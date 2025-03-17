@@ -62,6 +62,7 @@ class Survey extends Model
             $builder->where('type','!=', 1);
         });
     }*/
+
     
     public function getNationalitiesCount($survey_company_id)
     {

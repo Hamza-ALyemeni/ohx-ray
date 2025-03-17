@@ -304,7 +304,7 @@ class SurveysExport implements   FromArray
         $company=$query['survey_company']->company_id;
         $survey_id=$query['survey_company']->survey_id;
         $query['company'] = Company::find($company);
-        $query['responseStats'] = $survey->getResponseRate($survey_company_id);
+        // $query['responseStats'] = $survey->getResponseRate($survey_company_id);
         $query['data'] = Survey::with('questions.answers')->find($survey_id);
         foreach ($query['data']->questions as $question) {
             foreach ($question->answers as $answer) {
