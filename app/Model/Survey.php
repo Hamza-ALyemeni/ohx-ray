@@ -55,6 +55,44 @@ class Survey extends Model
         return $this->hasMany('App\Model\SurveyCompany');
     }
 
+    public function getResponseRate($survey_company_id)
+    {
+        // Fetch total number of employees invited
+        $totalEmployees = DB::table('survey_employees')
+            ->where('survey_company_id', $survey_company_id)
+            ->count();
+    
+        // Fetch number of employees who responded
+        $respondedEmployees = DB::table('survey_solutions')
+            ->join('survey_employees', 'survey_solutions.survey_employee_id', '=', 'survey_employees.id')
+            ->where('survey_employees.survey_company_id', $survey_company_id)
+            ->distinct('survey_employees.employee_id')
+            ->count('survey_employees.employee_id');
+    
+        // Calculate response rate
+        $responseRate = ($totalEmployees > 0) ? ($respondedEmployees / $totalEmployees) * 100 : 0;
+    
+        return [
+            'total_employees' => $totalEmployees,
+            'responded_employees' => $respondedEmployees,
+            'response_rate' => $responseRate,
+        ];
+    }
+
+
+    public function getNationalitiesCount($survey_company_id)
+    {
+        return DB::table('survey_employees as se')
+            ->join('users as u', 'se.employee_id', '=', 'u.id')
+            ->selectRaw('
+                COUNT(DISTINCT u.country_id) as total_nationalities,
+                SUM(CASE WHEN u.country_id = 184 THEN 1 ELSE 0 END) as local_count,
+                SUM(CASE WHEN u.country_id != 184 THEN 1 ELSE 0 END) as expat_count
+            ')
+            ->where('se.survey_company_id', $survey_company_id)
+            ->first();
+    }
+
   /*  protected static function boot()
     {
         parent::boot();
@@ -62,32 +100,6 @@ class Survey extends Model
             $builder->where('type','!=', 1);
         });
     }*/
-
-    
-    public function getNationalitiesCount($survey_company_id)
-    {
-        return DB::table('survey_employees as se')
-            ->join('users as u', 'se.employee_id', '=', 'u.id')
-            ->where('se.survey_company_id', $survey_company_id)
-            ->selectRaw('
-                COUNT(DISTINCT CASE WHEN u.country_id IS NOT NULL THEN u.country_id END) as total_nationalities,
-                SUM(CASE WHEN u.country_id = 184 THEN 1 ELSE 0 END) as local_count,
-                SUM(CASE WHEN u.country_id != 184 THEN 1 ELSE 0 END) as expat_count
-            ')
-            ->first();
-    }
-
-
-    public function getAgeStatis($survey_company_id){
-            // Age Statistics
-        $ageStats = DB::table('survey_employees as se')
-        ->join('users as u', 'se.employee_id', '=', 'u.id')
-        ->selectRaw('AVG(TIMESTAMPDIFF(YEAR, u.date_of_birth, CURDATE())) as avg_age, MIN(TIMESTAMPDIFF(YEAR, u.date_of_birth, CURDATE())) as min_age, MAX(TIMESTAMPDIFF(YEAR, u.date_of_birth, CURDATE())) as max_age')
-        ->where('se.survey_company_id', $survey_company_id)
-        ->first();
-
-        return $ageStats;
-    }
 
     public function focus_results($request , $type = null)
     {
