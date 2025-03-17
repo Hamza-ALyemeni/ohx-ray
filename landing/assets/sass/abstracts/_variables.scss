@@ -1,0 +1,22 @@
+/* Variables
+======================*/
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@300;500;700&display=swap');
+
+// Color
+$main_color: #047c44;
+$second_color: #e42008;
+$third_color: #3d4246;
+
+
+// Fonts
+$main_font: 'Changa', sans-serif;
+
+// Large devices (desktops, less than 1200px)
+$l_desktop: 1199.98px;
+// Medium devices (tablets, less than 992px)
+$desktop: 991.98px;
+// Small devices (landscape phones, less than 768px)
+$tablet: 767.98px;
+// Extra small devices (portrait phones, less than 576px)
+$mobile: 575.98px;
+$sm_mobile: 420px;

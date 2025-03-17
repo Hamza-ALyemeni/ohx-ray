@@ -1,0 +1,199 @@
+.form-group {
+  position: relative;
+  margin: 0 0 20px 0;
+  text-align: start;
+}
+label {
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 25px;
+  margin: 0 0 10px 0;
+  color: $main_color;
+}
+#show_pass {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 50px;
+  line-height: 50px;
+  background-color: transparent;
+  border: 0;
+  color: $third_color;
+}
+.form-control {
+  width: 100%;
+  color: $main_color;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  margin: 0;
+  padding: 0 15px;
+  line-height: 50px;
+  height: 50px;
+  font-size: 13px;
+  outline: 0;
+  box-shadow: none;
+  font-weight: 500;
+  @include bord_rad(3px);
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  &:hover {
+    outline: 0;
+    border: 1px solid #e0e0e0;
+    box-shadow: none;
+  }
+  &:focus {
+    outline: 0;
+    border: 1px solid #e0e0e0;
+    box-shadow: none;
+  }
+}
+textarea.form-control {
+  resize: none;
+  min-height: 120px !important;
+  padding: 15px !important;
+  line-height: 25px;
+}
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label {
+  position: relative;
+  padding-right: 25px;
+  cursor: pointer;
+  margin: 0;
+  font-size: 12px;
+  line-height: 25px;
+}
+
+input[type="checkbox"] + label::before {
+  content: "";
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #373737;
+  line-height: 17px;
+  font-size: 10px;
+  z-index: 99;
+  @include bord_rad(0px);
+}
+
+input[type="checkbox"]:checked + label::before {
+  content: "\f00c";
+  color: $main_color;
+  background-color: #fff;
+}
+.contact {
+  .row {
+    padding: 25px;
+    background-color: #fff;
+    @include bord_rad(5px);
+    margin: auto;
+    width: 100%;
+    &.copy_rights {
+      font-size: 16px;
+      text-align: center;
+      border-top: 1px solid #f1f1f1;
+      justify-content: center;
+      font-weight: 500;
+      padding: 15px;
+    }
+    @media all and (max-width: $tablet) {
+      padding: 15px;
+    }
+  }
+}
+.login {
+  @extend %flex;
+  min-height: 100vh;
+  .logo {
+    width: 220px;
+    margin: -100px auto 25px;
+  }
+  .row {
+    background-color: #fff;
+    padding: 0;
+    margin: 15px auto auto;
+    max-width: 940px;
+    .form_wrap {
+      border-left: 1px solid #f1f1f1;
+      padding: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      form {
+        width: 100%;
+        text-align: center;
+        .form_title {
+          @extend %head_tit;
+          margin-bottom: 25px;
+          text-align: center;
+          i {
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: $main_color;
+            text-align: center;
+            line-height: 40px;
+            margin: auto auto 15px auto;
+            @include bord_rad(50%);
+            color: #fff;
+          }
+        }
+        label {
+          color: $third_color;
+        }
+
+        .check {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .forget {
+          float: left;
+          color: $third_color;
+          line-height: 30px;
+          font-size: 14px;
+          font-weight: 300;
+        }
+      }
+    }
+    .main_img {
+      padding: 25px;
+      @extend %flex;
+      height: 100%;
+    }
+  }
+  @media all and (max-width: $desktop) {
+    .row {
+      .form_wrap {
+        padding: 25px;
+      }
+    }
+  }
+  @media all and (max-width: $tablet) {
+    .logo {
+      margin: 0 auto 25px auto;
+    }
+    .row {
+      max-width: 420px;
+      display: block;
+      .form_wrap {
+        padding: 25px;
+      }
+      .main_img {
+        display: none;
+      }
+    }
+  }
+}

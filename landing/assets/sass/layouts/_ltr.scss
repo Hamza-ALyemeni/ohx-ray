@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+html[dir="ltr"] {
+  body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    header {
+      .navbar-brand {
+        right: auto;
+        left: 0;
+      }
+      .header-btns {
+        right: 0;
+        left: auto;
+      }
+      .navbar ul.navbar-nav li a {
+        text-transform: capitalize;
+        padding: 0 15px;
+      }
+      @media all and (max-width: $mobile) {
+        .navbar-brand {
+          left: 15px;
+        }
+        .header-btns{
+          right:15px;
+        }
+      }
+    }
+    section .section_title {
+      h3 {
+        text-transform: uppercase;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+    .link {
+      text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 0 15px;
+      i {
+      margin: 0 0 0 5px;
+      @include transform(rotateY(180deg));
+    }
+  }
+    .features .feature_item {
+      h3 {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+    .about_content {
+      h3 {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 22px;
+      }
+      h4 {
+        font-weight: 700;
+        font-size: 16px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+    .templates .template_item h3 {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 16px;
+    }
+    .testimonial_item {
+      direction: ltr;
+      p {
+        font-size: 14px;
+        &::after {
+          left: 15px;
+          right: auto;
+          @include transform(rotateY(180deg));
+        }
+      }
+      .user {
+        margin: 15px 0 0 60px;
+        img {
+          margin: 0 0 0 15px;
+        }
+      }
+    }
+  }
+}

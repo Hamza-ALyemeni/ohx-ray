@@ -1,0 +1,196 @@
+/* Setting Style
+======================*/
+*,
+:focus {
+  outline: 0 !important;
+}
+::selection {
+  background-color: $main_color !important;
+  color: #fff !important;
+}
+body {
+  font-family: $main_font;
+  overflow: hidden;
+  width: 100%;
+  background-color: #fff;
+  font-weight: 300;
+  text-align: start;
+}
+
+/* Lists  
+======================*/
+ul,
+li {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Links 
+======================*/
+a,
+a:hover,
+a:focus {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link {
+  @extend %button_all;
+}
+.icon_link {
+  @extend %button_icon;
+}
+
+/*Images
+======================*/
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Loading
+========================*/
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 4px;
+  line-height: 50px;
+}
+
+/* Up Button
+=======================*/
+.up_btn {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  border: 0;
+  z-index: 999;
+}
+
+/* Loading
+=======================*/
+.loading {
+  @extend %flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: #fff;
+  .load_cont {
+    margin-top: -60px;
+    position: relative;
+    width: 290px;
+    height: 175px;
+    img {
+      position: relative;
+      display: block;
+      margin: auto;
+    }
+
+    .spinner {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      top: 30px;
+      left: 10px;
+      bottom: 0;
+      margin: auto;
+      background-color: $main_color;
+      @include bord_rad(50%);
+      animation: sk-scaleout 1.4s infinite ease-in-out;
+    }
+  }
+}
+@-webkit-keyframes sk-scaleout {
+  0% {
+    @include transform(scale(0));
+  }
+  100% {
+    @include transform(scale(1));
+    opacity: 0;
+  }
+}
+@keyframes sk-scaleout {
+  0% {
+    @include transform(scale(0));
+  }
+  100% {
+    @include transform(scale(1));
+    opacity: 0;
+  }
+}
+
+/* Section Setting
+=======================*/
+.page_content {
+  z-index: 998;
+  margin-top: 75px;
+  position: relative;
+}
+section {
+  padding: 70px 0;
+  position: relative;
+  &.section_color {
+    background-color: #f8f8f8;
+  }
+  .section_title {
+    margin: 0 auto 50px;
+    h3 {
+      @extend %main_tit;
+      font-size: 32px;
+      line-height: 40px;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 20px;
+      @extend %txt;
+    }
+  }
+  @media all and (max-width: $tablet) {
+    padding: 40px 0 !important;
+    .section_title {
+      h3 {
+        font-size: 28px;
+        text-align: start;
+      }
+      p {
+        text-align: start;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.scroll_id {
+  width: 100%;
+  position: absolute;
+  height: 0;
+  display: block;
+  clear: both;
+  overflow: hidden;
+  bottom: 100px;
+}

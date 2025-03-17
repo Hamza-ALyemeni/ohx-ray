@@ -1,0 +1,290 @@
+.custom {
+  --mainColor: #db2828;
+  --altColor: #2185d0;
+  --thirdColor: #00b5ad;
+  --fourthColor: #71b781;
+  --percentColor: rgba(0, 0, 0, 0.6);
+  --bdColor: #c3c0c7;
+  --light: #fff;
+  --dark: #000;
+  --bdRadius: 0.3rem;
+
+  padding: 0.75rem;
+}
+@media (min-width: 1400px) {
+  .custom {
+    margin-left: -2rem;
+  }
+}
+.custom ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.custom .custom-title {
+  text-align: center;
+  font-weight: 700;
+}
+.custom .percent {
+  display: block;
+  color: var(--percentColor);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.custom h1.custom-title {
+  color: var(--mainColor);
+  font-size: 2rem;
+}
+.custom h2.custom-title {
+  color: var(--altColor);
+  font-size: 1.75rem;
+}
+.custom h3.custom-title {
+  color: var(--thirdColor);
+  font-size: 1.5rem;
+}
+.custom h4.custom-title {
+  color: var(--fourthColor);
+  font-size: 1.25rem;
+}
+.custom .response,
+.custom .results {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+/* Start of Response */
+.custom .response .box-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.custom .response .box-container .box {
+  border: inherit;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 8px rgba(134, 125, 125, 0.774);
+}
+.custom .response .box-container .box .custom-title {
+  padding-top: 1rem;
+}
+.custom .response .box-container .box ul {
+  padding: 1rem;
+}
+.custom .response .box-container .box ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(231, 223, 223, 0.315);
+  font-weight: 700;
+}
+.custom .response .box-container .box ul li:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+/* End of Response */
+
+/* Start of Results */
+.custom .results .main {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.custom .results .main img {
+  width: 50px;
+}
+.custom .results .division {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--bdColor);
+  border-radius: var(--bdRadius);
+  padding: 0.75rem;
+}
+.custom .results .division:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+.custom .results .division > .custom-title {
+  writing-mode: vertical-rl;
+  -webkit-transform: scale(-1, -1);
+  -moz-transform: scale(-1, -1);
+  -ms-transform: scale(-1, -1);
+  -o-transform: scale(-1, -1);
+  transform: scale(-1, -1);
+  padding: 0.75rem;
+}
+.custom .results .division .box-container {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+.custom .results .division .box-container .box {
+  width: calc(98% / 2);
+  padding: 0.75rem;
+  border: 1px solid var(--bdColor);
+  border-radius: var(--bdRadius);
+}
+.custom .results .division .box-container .box .wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+.custom .results .division .box-container .box .inner-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.custom .results .division .box-container .box .inner-box .custom-title {
+  margin-bottom: 0;
+}
+.custom .results .division .box-container .box .question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+}
+.custom .results .division .box-container .box .question li {
+  max-width: 70px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  padding: 0.5rem;
+  box-shadow: 0 3px 5px rgba(134, 125, 125, 0.774);
+}
+/* End of Results */
+
+/* Start of Table */
+.custom .ui.table {
+  margin-bottom: 2rem;
+  background-color: rgba(205, 219, 230, 0.6);
+}
+.custom .ui.table thead th {
+  background-color: var(--altColor);
+  color: var(--light);
+  font-size: 1rem;
+}
+.custom .ui.table tbody tr td:first-child {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.custom .ui.table caption {
+  color: var(--mainColor);
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.custom .ui.table th,
+.custom .ui.table td {
+  text-align: center;
+  font-size: 1.25rem;
+}
+/* End of Table */
+
+/* Start of Final */
+.custom .final {
+  position: relative;
+  background-color: #eee;
+  border-radius: var(--bdRadius);
+  margin-bottom: 2rem;
+  padding: 1.5rem 0.75rem 1rem 80px;
+}
+.custom .final .final-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+}
+.custom .final .final-row:not(:last-of-type) {
+  margin-bottom: 1.5rem;
+}
+.custom .final .final-row .heading {
+  width: 220px;
+  color: #444;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0 1rem;
+  margin: 1rem 0 0;
+}
+.custom .final .final-row .final-col {
+  background-color: rgba(255, 255, 255, 0.75);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 5px 8px rgba(134, 125, 125, 0.774);
+}
+.custom .final .final-row .final-col .final-item {
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+}
+.custom .final .final-row .final-col .final-item:not(:last-child) {
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #777;
+}
+.custom .final .final-row .final-col .final-item.active {
+  color: var(--altColor);
+}
+.custom .final .highest,
+.custom .final .lowest {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #444;
+  text-transform: uppercase;
+  background-color: var(--light);
+  width: 40px;
+  min-height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 20px;
+  writing-mode: vertical-lr;
+  -webkit-transform: scale(-1, -1);
+  -moz-transform: scale(-1, -1);
+  -ms-transform: scale(-1, -1);
+  -o-transform: scale(-1, -1);
+  transform: scale(-1, -1);
+}
+.custom .final .highest {
+  top: 180px;
+}
+.custom .final .lowest {
+  bottom: 80px;
+}
+.custom .final .highest::after,
+.custom .final .lowest::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 30px;
+}
+.custom .final .highest::after {
+  bottom: -60px;
+  border-color: var(--light) transparent transparent;
+}
+.custom .final .lowest::before {
+  top: -60px;
+  border-color: transparent transparent var(--light);
+}
+/* End of Final */
+/* Remove if Not Required */
+.content {
+  padding: 0;
+}
+.content form {
+  max-width: 100% !important;
+}
+.content .customized-width {
+  margin: 1rem 0 !important;
+}

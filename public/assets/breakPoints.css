@@ -1,0 +1,211 @@
+@media only screen and (max-width: 992px) {
+    .container {
+      width: 100%;
+    }
+    .sidebar {
+      top: 0;
+      left: 0;
+      background: linear-gradient(to bottom, white, rgba(75, 172, 75, 0.945));
+  
+      transition: width 0.3s ease-in;
+    }
+    .sidebar.active {
+      width: 100% !important;
+      height: 100% !important;
+    }
+    .sidebar-logo {
+      display: none;
+    }
+    .sidebar-logo.active {
+      display: block;
+    }
+    .close-icon {
+      position: absolute;
+      top: 4%;
+      right: 7%;
+    }
+    .close-icon i {
+      font-size: 18px !important;
+    }
+    .navbar-header {
+      justify-content: space-between;
+    }
+  
+    .burger-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20%;
+      padding: 10px 20px;
+    }
+    .burger-icon i {
+      font-size: 18px !important;
+    }
+    .searchBar {
+      padding-right: 65px;
+    }
+  
+    /* SIDEBAR STYLE
+    .mobile-view.active .sidebar-link .sidebar-item-content i {
+      font-size: 16px !important;
+    }
+    .mobile-view.active
+      .sidebar-link
+      .sidebar-item-content
+      .sidebar-subItem-text {
+      font-size: 13px;
+      margin-left: 10px;
+    }
+    .verify-form-fields {
+      padding: 0;
+      margin-bottom: 20px !important;
+    }
+    .mobile-filter {
+      margin: 10px auto;
+    }
+    #employeesTable thead tr,
+    #empTable thead tr,
+    #surveysTable thead tr {
+      display: none !important;
+    }
+    #employeesTable tbody tr,
+    #empTable tbody tr,
+    #surveysTable tbody tr {
+      position: relative;
+    }
+    #employeesTable tbody td p,
+    #empTable tbody td p,
+    #surveysTable tbody td p {
+      display: flex;
+    }
+    #employeesTable tbody tr td p span,
+    #empTable tbody tr td p span,
+    #surveysTable tbody tr td p span {
+      display: block;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    #surveysTable tbody tr td p:first-child {
+      font-weight: normal;
+    }
+    .flex-none {
+      font-size: 13px;
+    }
+    #employeesTable tbody tr td.mobile-actions {
+      position: absolute;
+      top: 35%;
+      right: 0%;
+    }
+    .support-container {
+      padding: 0 !important;
+    }
+    .support-form {
+      padding: 10px !important;
+    }
+    .notifications-actionBtns {
+      flex-direction: column;
+      justify-items: flex-start;
+    }
+    .notifications-actionBtns .field {
+      margin-bottom: 20px;
+    }
+    .actionBtns-account {
+      width: 100% !important;
+    } */
+  
+    /* AUTH STYLE */
+    .login-container {
+      padding: 30px;
+      height: auto !important;
+      flex-direction: column;
+      justify-items: flex-start;
+    }
+    .login-desc {
+      width: 100%;
+      height: auto;
+      border-bottom-left-radius: 0;
+      background: none;
+    }
+    .login-desc img {
+      margin: 0 auto;
+    }
+    .login-desc-details {
+      width: 100%;
+    }
+    .login-desc-details h1 {
+      text-align: center;
+    }
+    .login-desc-details-img {
+      width: 250px;
+    }
+    .login-form {
+      width: 100%;
+      height: auto;
+      border-bottom-left-radius: 15px !important;
+    }
+    .survey-actionBtns p {
+      width: 50%;
+      margin-bottom: 0;
+    }
+    .survey-actionBtns .filter-by-dropdown .filter-header {
+      width: 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 781px) {
+    .sub-content .card {
+      font-size: 14px;
+    }
+    .empInfo {
+      text-align: left !important;
+    }
+    .main-info-header {
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media only screen and (max-width: 766px) {
+    .sub-content .card {
+      font-size: 14px;
+    }
+  }
+  @media only screen and (max-width: 640px) {
+    .reports-hyperlink p {
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .reports-hyperlink {
+      flex-direction: column;
+    }
+  
+    .question-responses {
+      flex-direction: column;
+    }
+    .question-responses h4:first-child {
+      margin-bottom: 10px;
+    }
+    .question-responses h4:last-child {
+      margin-top: 10px;
+    }
+    .responses {
+      display: flex;
+      flex-direction: row;
+    }
+    .responses p:last-child {
+      margin-left: 20px;
+    }
+    .survey-actionBtns .filter-by-dropdown .filter-header {
+      width: 100%;
+    }
+  }
+  
+  @media only screen and (max-width: 400px) {
+    .reports-hyperlink {
+      padding: 10px 0;
+    }
+    .reports-hyperlink p br.displayed {
+      display: block;
+    }
+  }
+  

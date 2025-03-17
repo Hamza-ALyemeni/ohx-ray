@@ -1,0 +1,169 @@
+
+@extends('layouts.master-layouts')
+@section('title')
+@lang('Companies')
+@endsection
+@section('body')
+
+<body data-layout="horizontal" data-topbar="colored">
+
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <i class="uil-shutter-alt spin-icon"></i>
+            </div>
+        </div>
+    </div>
+    @endsection
+    @section('content')
+    @component('common-components.breadcrumb')
+    @slot('pagetitle') Horizontal @endslot
+    @slot('title') Organizations @endslot
+    @endcomponent
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <a href="{{url('company/create')}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-plus me-2"></i> Add New</a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-inline float-md-end mb-3">
+                                <div class="search-box ms-2">
+                                    <div class="position-relative">
+                                        <input type="text" class="form-control rounded bg-light border-0"
+                                            placeholder="Search...">
+                                        <i class="mdi mdi-magnify search-icon"></i>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- end row -->
+                    <div class="table-responsive mb-4">
+                        <table class="table table-centered table-nowrap mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 50px;">
+                                        <div class="form-check font-size-16">
+                                            <input type="checkbox" class="form-check-input" id="contacusercheck">
+                                            <label class="form-check-label" for="contacusercheck"></label>
+                                        </div>
+                                    </th>
+                                    <th scope="col" >organization Name</th>
+                                    <th scope="col">organization Email</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">No. Of Employees</th>
+                                    <th scope="col">Survey No.</th>
+                                    <th scope="col" style="width: 200px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($data as $company)
+                                <tr>
+                                    <th scope="row">
+                                        <div class="form-check font-size-16">
+                                            <input type="checkbox" class="form-check-input" id="contacusercheck1">
+                                            <label class="form-check-label" for="contacusercheck1"></label>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <img src="{{$company->logo}}" alt=""   class="avatar-xs rounded-circle me-2">
+                                        <a href="{{url('company/'.$company->id)}}" class="text-body">{{$company->name}}</a>
+                                    </td>
+                                    <td>{{$company->user->email}} </td>
+                                    <td >{{$company->user->phone}}</td>
+                                    <td>{{$company->employees_count}}</td>
+                                    @if($company->surveys_count == 0)
+                                    <td>0</td>
+                                    @else
+                                    <td>{{$company->surveys_count-1}}</td>
+                                    @endif
+                                    <td>
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <a href="{{url('company/'.$company->id.'/edit')}}" class="px-2 text-primary"><i
+                                                        class="uil uil-pen font-size-18"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                            <a class="px-2 text-danger"
+                                                onclick=" event.preventDefault(); var r = confirm('are you sure?'); if (r==true){document.getElementById('delete-row{{$company->id}}').submit();}">
+                                                <i  class="uil uil-trash-alt font-size-18"></i>
+                                            </a>
+                                                <form method="post" id="delete-row{{$company->id}}"
+                                                    action="{{ url('company/'.$company->id) }}"
+                                                    style="display: none;">
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    {{ csrf_field() }}
+                                                </form>
+
+                                            </a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="{{url('company/'.$company->id)}}" class="px-2 text-primary"><i class="fas fa-id-card"></i></a>
+                                            </li>
+                                           <!--  <li class="list-inline-item dropdown">
+                                                <a class="text-muted dropdown-toggle font-size-18 px-2" href="#"
+                                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="uil uil-ellipsis-v"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item" href="{{url('company/'.$company->id)}}">View Co. Profile</a>
+                                                    <a class="dropdown-item" href="{{url('company/'.$company->id.'/live_duration')}}">Live Durations</a>
+                                                   <a class="dropdown-item" href="{{url('company/'.$company->id.'/report')}}">Report Survey</a>
+                                                    <a class="dropdown-item" href="{{url('company/'.$company->id.'/checkquality')}}">Check quality</a>
+                                                </div>
+                                            </li> -->
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-sm-6">
+                            <div>
+                                <p class="mb-sm-0">Showing 1 to 10 of 12 entries</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="float-sm-end">
+                                <ul class="pagination mb-sm-0">
+                                    <li class="page-item disabled">
+                                        <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">1</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a href="#" class="page-link">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+
+@endsection

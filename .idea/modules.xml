@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../menuhat_web/.idea/menuhat_web.iml" filepath="$PROJECT_DIR$/../menuhat_web/.idea/menuhat_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ohx.iml" filepath="$PROJECT_DIR$/.idea/ohx.iml" />
+    </modules>
+  </component>
+</project>

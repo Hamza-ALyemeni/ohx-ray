@@ -1,0 +1,19 @@
+.templates{
+
+padding: 100px 0;
+.template_item {
+  background-color: #fff;
+  margin: auto auto 25px;
+  text-align: center;
+  display: block;
+  h3 {
+    padding: 15px;
+      @extend %head_tit;
+      color: $third_color;
+      margin: 0;
+    }
+  }
+  @media all and (max-width: $desktop) {
+    padding-top: 70px;
+  }
+}

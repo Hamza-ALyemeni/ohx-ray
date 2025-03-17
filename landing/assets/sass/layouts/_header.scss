@@ -1,0 +1,126 @@
+/* Header
+==============================*/
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 75px;
+  background-color: #fff;
+  z-index: 999;
+  border-bottom: 1px solid #f1f1f1;
+  @include transition(0.3s, top, linear);
+  &.move {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+      rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  }
+  .container {
+    min-height: 75px;
+    position: relative;
+  }
+  .navbar-brand {
+    height: 75px;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: auto;
+    z-index: 999;
+    img {
+      height: 100%;
+    }
+  }
+  .header-btns {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 20px 0;
+    height: 75px;
+    z-index: 999;
+    .menu-btn {
+      display: none;
+    }
+  }
+  .navbar {
+    padding: 0;
+    margin: -75px 0 0 0;
+
+    ul.navbar-nav {
+      @extend %flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      min-height: 75px;
+      li {
+        display: inline-block;
+        a {
+          position: relative;
+          display: block;
+          padding: 0 25px;
+          font-size: 16px;
+          font-weight: 500;
+          color: $third_color;
+          text-align: center;
+          line-height: 30px;
+          &:hover {
+            color: $main_color;
+          }
+        }
+      }
+    }
+  }
+  @media all and (max-width: $desktop) {
+    .header-btns {
+      left: 15px;
+      .menu-btn {
+        display: inline-block;
+      }
+    }
+    .navbar {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      background-color: $third_color;
+      .navbar-collapse {
+        position: relative;
+        z-index: 999;
+        margin: auto;
+        .container{
+          padding: 0;
+        }
+      }
+      ul.navbar-nav {
+        display: block;
+        text-align: start;
+        width: 100%;
+        padding: 15px 0;
+        li {
+          display: block;
+          a {
+            display: inline-block;
+            margin: 5px 0;
+            padding: 0 15px;
+            text-align: start;
+            color: #fff;
+            line-height: 30px;
+            font-size: 14px;
+            &:hover {
+              color: $second_color;
+            }
+          }
+        }
+      }
+    }
+
+    .nav-main-collapse.collapse {
+      display: none !important;
+    }
+  }
+  @media all and (max-width: $mobile) {
+    .navbar-brand {
+      right: 15px;
+    }
+  }
+}

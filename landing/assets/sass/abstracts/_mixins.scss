@@ -1,0 +1,22 @@
+@mixin transition($time, $property, $timing-fun) {
+  -webkit-transition: $time $property $timing-fun;
+  -moz-transition: $time $property $timing-fun;
+  -o-transition: $time $property $timing-fun;
+  transition: $time $property $timing-fun;
+}
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -moz-transform: $property;
+  -o-transform: $property;
+  transform: $property;
+}
+@mixin bord_rad($rad) {
+  border-radius: $rad;
+  -webkit-border-radius: $rad;
+}
+@mixin box-sh($x, $y, $blur, $spd, $color) {
+  -webkit-box-shadow: $x $y $blur $spd $color;
+  -moz-box-shadow: $x $y $blur $spd $color;
+  -o-box-shadow: $x $y $blur $spd $color;
+  box-shadow: $x $y $blur $spd $color;
+}

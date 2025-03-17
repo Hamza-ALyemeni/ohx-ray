@@ -1,0 +1,62 @@
+.testimonials{
+  padding-top: 0;
+}
+.testimonial_item {
+  p {
+    padding: 35px;
+    text-align: center;
+    font-size: 17px;
+    line-height: 30px;
+    color: $third_color;
+    position: relative;
+    background-color: #f8f8f8;
+    @include bord_rad(5px);
+
+    &::before {
+      content: "\f10d";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      font-size: 85px;
+      opacity: 0.05;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -29px;
+      right: 15px;
+      margin: auto;
+      width: 43px;
+      height: 30px;
+      background: url(../../../assets/images/curve.png);
+    }
+  }
+  .user {
+    font-size: 14px;
+    margin: 15px 60px 0 0;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    img {
+      width: 50px;
+      height: 50px;
+      @include bord_rad(50%);
+      display: inline-block;
+      margin: 0 0 0 15px;
+    }
+    .cont {
+      color: $main_color;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 50px;
+    }
+  }
+}
