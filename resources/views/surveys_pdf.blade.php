@@ -147,7 +147,7 @@
         }
         .response-rate{
             position: relative;
-            left: 380px;
+            left: 460px;
         }
         .nationlities-stats{
             position: relative;
