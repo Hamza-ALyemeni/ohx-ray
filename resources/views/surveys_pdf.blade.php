@@ -880,7 +880,7 @@
                 <img src="{{ public_path('id icon.PNG') }}" alt="">
                 <div class="number">{{ $focus_result[0]['count'] }}</div>
                 <p>NUMBER OF EMPLOYEES <br> WHO RESPONDED</p>
-                {{-- <p><span class="rrate">{{ number_format($responseStats['response_rate'],0); }}%</span> RESPONSE RATE</p> --}}
+                <p><span class="rrate">{{ number_format($responseStats->response_rate,0); }}%</span> RESPONSE RATE</p>
             </div>
             <img id="arrows" src="{{ public_path('arrows.png')}}" alt="">
             <div class="nationlities-stats">
