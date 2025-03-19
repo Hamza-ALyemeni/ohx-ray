@@ -768,6 +768,7 @@
         {
             background-color: #eee;
         }
+        
 
         .indicators-by-gender th{
             background-color: #eee;
@@ -827,7 +828,13 @@
 
         /* ******************************* */
 
+        /* ******************************* */
 
+        .by-nationality img{
+            width: 1100px;
+        }
+
+        /* ******************************* */
 
     </style>
 </head>
@@ -4279,6 +4286,740 @@
                 </div>
             </div>
         </div>
+
+        <div class="by-nationality" style="position: relative; top: 16200px; left:40px;">
+            <img src="{{public_path('by nationality.png')}}" alt="">
+        </div>
+
         
+        <div style="position: relative; top:17400px; left:40px;">
+            <p class="center-title title">LOCAL NATIONALITY HEALTH IMAGE</p>
+            <div class="organization-results-container">
+                @if(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 25)
+                    <p class="quartile-orgnaztion-details bottom-quartile organization-results-score"><span class="quartile-second-part">{{number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0)}}</span></p>
+                @elseif(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 50)
+                    <p class="quartile-orgnaztion-details third-quartile organization-results-score"><span class="quartile-second-part">{{number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0)}}</span></p>
+                @elseif(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 80)
+                    <p class="quartile-orgnaztion-details second-quartile organization-results-score"><span class="quartile-second-part">{{number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0)}}</span></p>
+                @else
+                    <p class="quartile-orgnaztion-details top-quartile organization-results-score"><span class="quartile-second-part">{{number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0)}}</span></p>
+                @endif
+        
+                @if(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 25)
+                    <p class="quartile-orgnaztion-details bottom-quartile organization-results-quartile"><span class="quartile-first-part">BOTTOM</span> <span class="quartile-second-part">QUARTILE</span></p>
+                @elseif(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 50)
+                    <p class="quartile-orgnaztion-details third-quartile organization-results-quartile"><span class="quartile-first-part">THIRD</span> <span class="quartile-second-part">QUARTILE</span></p>
+                @elseif(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 80)
+                    <p class="quartile-orgnaztion-details second-quartile organization-results-quartile"><span class="quartile-first-part">SECOND</span> <span class="quartile-second-part">QUARTILE</span></p>
+                @else
+                    <p class="quartile-orgnaztion-details top-quartile organization-results-quartile"><span class="quartile-first-part">TOP</span> <br> <span class="quartile-second-part">QUARTILE</span></p>
+                @endif
+
+                <div class="quartile-orgnaztion-details-left-column" style="background-color: white">
+                    @if(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 25)
+                        <img class="state-color-image" src="{{ public_path('red overall score.png') }}" alt="">
+                    @elseif(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 50)
+                        <img class="state-color-image" src="{{ public_path('orange overall score.png') }}" alt="">
+                    @elseif(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 80)
+                        <img class="state-color-image" src="{{ public_path('yellow overall score.png') }}" alt="">
+                    @else
+                        <img class="state-color-image" src="{{ public_path('top overall score.png') }}" alt="">
+                    @endif
+                    <img class="stats-picture" src=" {{public_path('local.png')}}" alt="">
+                </div>
+
+                    <!-- Start of External -->
+                <div class="quartile-orgnaztion-details-right-column">
+                    <div class="inside-focus-result">
+                        <div class="inside-focus-result-header @if($focus_result_local[1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <h3 class="inside-focus-result-header-text">INSIDE</h3>
+                            <h3 class="inside-focus-result-header-number">{{number_format($focus_result_local[1]['value'],0);}}</h3>
+                        </div>
+                        <div class="inside-focus-result-accountability @if($focus_result_local[1]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-accountability-text">{{ $focus_result_local[1]['dimensional_results'][0]['key']; }}</p>
+                            <p class="inside-focuse-result-accountability-number">{{ number_format($focus_result_local[1]['dimensional_results'][0]['value'] ,0); }}</p>
+                        </div>
+                        <div class="inside-focus-result-leadership @if($focus_result_local[1]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-leadership-text">{{ $focus_result_local[1]['dimensional_results'][1]['key']; }}</p>
+                            <p class="inside-focus-result-leadership-number">{{ number_format($focus_result_local[1]['dimensional_results'][1]['value'] ,0) }}</p>
+                        </div>
+                        <div>
+                            <div class="responsibilities @if($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="responsibilities-text">{{ $focus_result_local[1]['dimensional_results'][0]['dimensional_results'][0]['key']; }}<span class="responsibilities-number">{{ number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0);}}</span></p>
+                            </div>
+                            <div class="trustworthiness @if($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="turstworthiness-text">{{ $focus_result_local[1]['dimensional_results'][0]['dimensional_results'][1]['key']; }}<span class="turstworthiness-number">{{ number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0);}}</span></p>
+                            </div>
+                            <div class="commitment @if($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="commitment-text">{{ $focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['key']; }} <span class="commitment-number">{{ number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0);}}</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="democratic @if($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="democratic-text">{{ $focus_result_local[1]['dimensional_results'][1]['dimensional_results'][0]['key']; }}  <span class="democratic-number">{{  number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0); }}</span> </p>
+                            </div>
+                            <div class="autocratic @if($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="autocratic-text">{{ $focus_result_local[1]['dimensional_results'][1]['dimensional_results'][1]['key']; }} <span class="autocratic-number">{{  number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="transformational @if($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="transformational-text">{{ $focus_result_local[1]['dimensional_results'][1]['dimensional_results'][2]['key']; }} <span class="transformational-number">{{  number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div class="inside-focus-result-working-environment  @if($focus_result_local[1]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-working-environment-text">{{ $focus_result_local[1]['dimensional_results'][2]['key']; }}</p>
+                            <p class="inside-focus-result-working-environment-number">{{ number_format($focus_result_local[1]['dimensional_results'][2]['value'],0); }}</p>
+                        </div>
+                        <div class="inside-focus-result-motivation @if($focus_result_local[1]['dimensional_results'][3]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][3]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][3]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-motivation-text">{{ $focus_result_local[1]['dimensional_results'][3]['key']; }}</p>
+                            <p class="inside-focus-result-motivation-number">{{ number_format($focus_result_local[1]['dimensional_results'][3]['value'],0); }}</p>
+                        </div>
+                        <div>
+                            <div class="trusting @if($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="trusting-text">{{ $focus_result_local[1]['dimensional_results'][2]['dimensional_results'][0]['key']; }} <span class="trusting-number">{{ number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0); }}</span></p>
+                            </div>
+                            <div class="fairness @if($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="fairness-text">{{ $focus_result_local[1]['dimensional_results'][2]['dimensional_results'][1]['key']; }} <span class="fairness-number">{{ number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="respect @if($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="respect-text">{{ $focus_result_local[1]['dimensional_results'][2]['dimensional_results'][2]['key']; }} <span class="respect-number">{{ number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="reward @if($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="reward-text">{{ $focus_result_local[1]['dimensional_results'][3]['dimensional_results'][0]['key']; }} <span class="reward-number">{{ number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0);}}</span></p>
+                            </div>
+                            <div class="inspire @if($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="inspire-text">{{$focus_result_local[1]['dimensional_results'][3]['dimensional_results'][1]['key']; }}<span class="inspire-number">{{number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][1]['value'] ,0);}}</span></p>
+                            </div>
+                            <div class="recognition @if($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="recognition-text">{{$focus_result_local[1]['dimensional_results'][3]['dimensional_results'][2]['key']; }} <span class="recognition-number">{{number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="outside-focus-result">
+                        <div class="inside-focus-result-header @if($focus_result_local[0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <h3 class="inside-focus-result-header-text">OUTSIDE</h3>
+                            <h3 class="inside-focus-result-header-number">{{ number_format($focus_result_local[0]['value'],0); }}</h3>
+                        </div>
+                        <div class="inside-focus-result-accountability @if($focus_result_local[0]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-accountability-text">{{ $focus_result_local[0]['dimensional_results'][0]['key']; }}</p>
+                            <p class="inside-focuse-result-accountability-number">{{ number_format($focus_result_local[0]['dimensional_results'][0]['value'],0);}}</p>
+                        </div>
+                        <div class="inside-focus-result-leadership @if($focus_result_local[0]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-leadership-text">{{ $focus_result_local[0]['dimensional_results'][1]['key']; }}</p>
+                            <p class="inside-focus-result-leadership-number">{{ number_format($focus_result_local[0]['dimensional_results'][1]['value'],0); }}</p>
+                        </div>
+                        <div>
+                            <div class="responsibilities @if($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="responsibilities-text">{{ $focus_result_local[0]['dimensional_results'][0]['dimensional_results'][0]['key']; }}<span class="responsibilities-number" style="margin-left:110px">{{number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0); }}</span></p>
+                            </div>
+                            <div class="trustworthiness @if($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="turstworthiness-text">{{ $focus_result_local[0]['dimensional_results'][0]['dimensional_results'][1]['key']; }}<span class="turstworthiness-number" style="margin-left:110px">{{number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="commitment @if($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="commitment-text">{{ $focus_result_local[0]['dimensional_results'][0]['dimensional_results'][2]['key']; }} <span class="commitment-number" style="margin-left:90px">{{ number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="democratic @if($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="democratic-text">{{ $focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['key']; }}  <span class="democratic-number" style="margin-left:80px">{{ number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0); }}</span> </p>
+                            </div>
+                            <div class="autocratic @if($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="autocratic-text">{{$focus_result_local[0]['dimensional_results'][1]['dimensional_results'][1]['key'];}} <span class="autocratic-number" style="margin-left:80px">{{ number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="transformational @if($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="transformational-text">{{$focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['key'] }}<span class="transformational-number" style="margin-left: 90px;">{{ number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div class="inside-focus-result-working-environment @if($focus_result_local[0]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-working-environment-text">External <br> Relation</p>
+                            <p class="inside-focus-result-working-environment-number">{{number_format($focus_result_local[0]['dimensional_results'][2]['value'],0) }}</p>
+                        </div>
+                        <div class="inside-focus-result-motivation @if($focus_result_local[0]['dimensional_results'][3]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][3]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][3]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-motivation-text">{{$focus_result_local[0]['dimensional_results'][3]['key'] }}</p>
+                            <p class="inside-focus-result-motivation-number">{{number_format($focus_result_local[0]['dimensional_results'][3]['value'],0); }}</p>
+                        </div>
+                        <div>
+                            <div class="trusting @if($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="trusting-text">{{ $focus_result_local[0]['dimensional_results'][2]['dimensional_results'][0]['key']; }}<span class="trusting-number" style="margin-left:90px">{{number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0);}}</span></p>
+                            </div>
+                            <div class="fairness  @if($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="fairness-text">{{ $focus_result_local[0]['dimensional_results'][2]['dimensional_results'][1]['key']; }} <span class="fairness-number" style="margin-left:75px">{{ number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="respect  @if($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="respect-text">{{ $focus_result_local[0]['dimensional_results'][2]['dimensional_results'][2]['key']; }} <span class="respect-number">{{ number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="reward @if($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="reward-text">{{ $focus_result_local[0]['dimensional_results'][3]['dimensional_results'][0]['key'];}} <span class="reward-number" style="margin-left: 110px;">{{ number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0); }}</span></p>
+                            </div>
+                            <div class="inspire @if($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="inspire-text">{{ $focus_result_local[0]['dimensional_results'][3]['dimensional_results'][1]['key']; }} <span class="inspire-number" style="margin-left: 90px;">{{ number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0);}}</span></p>
+                            </div>
+                            <div class="recognition @if($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="recognition-text">{{ $focus_result_local[0]['dimensional_results'][3]['dimensional_results'][2]['key'];}} <span class="recognition-number" style="margin-left: 70px;">{{ number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0);}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="quadrants" style="position: relative; top: -950px;">
+                <span class="scale">Scale:</span>
+                <div>
+                    <span class="quadrant top-quartile"></span>
+                    <span class="text-for-quartile">TOP QUARTILE</span>
+                    <span class="quadrant second-quartile"></span>
+                    <span class="text-for-quartile">SECOND QUARTILE</span>
+                    <span class="quadrant third-quartile"></span>
+                    <span class="text-for-quartile">THIRD QUARTILE</span>
+                    <span class="quadrant bottom-quartile"></span>
+                    <span class="text-for-quartile">BOTTOM QUARTILE</span>
+                </div>
+            </div>
+        
+        </div>  
+
+        <div style="position: relative; top:17400px; left:40px;">
+            <p class="center-title title">EXPAT NATIONALITY HEALTH IMAGE</p>
+            <div class="organization-results-container">
+                @if(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 25)
+                    <p class="quartile-orgnaztion-details bottom-quartile organization-results-score"><span class="quartile-second-part">{{number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0)}}</span></p>
+                @elseif(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 50)
+                    <p class="quartile-orgnaztion-details third-quartile organization-results-score"><span class="quartile-second-part">{{number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0)}}</span></p>
+                @elseif(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 80)
+                    <p class="quartile-orgnaztion-details second-quartile organization-results-score"><span class="quartile-second-part">{{number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0)}}</span></p>
+                @else
+                    <p class="quartile-orgnaztion-details top-quartile organization-results-score"><span class="quartile-second-part">{{number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0)}}</span></p>
+                @endif
+        
+                @if(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 25)
+                    <p class="quartile-orgnaztion-details bottom-quartile organization-results-quartile"><span class="quartile-first-part">BOTTOM</span> <span class="quartile-second-part">QUARTILE</span></p>
+                @elseif(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 50)
+                    <p class="quartile-orgnaztion-details third-quartile organization-results-quartile"><span class="quartile-first-part">THIRD</span> <span class="quartile-second-part">QUARTILE</span></p>
+                @elseif(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 80)
+                    <p class="quartile-orgnaztion-details second-quartile organization-results-quartile"><span class="quartile-first-part">SECOND</span> <span class="quartile-second-part">QUARTILE</span></p>
+                @else
+                    <p class="quartile-orgnaztion-details top-quartile organization-results-quartile"><span class="quartile-first-part">TOP</span> <br> <span class="quartile-second-part">QUARTILE</span></p>
+                @endif
+
+                <div class="quartile-orgnaztion-details-left-column" style="background-color: white">
+                    @if(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 25)
+                        <img class="state-color-image" src="{{ public_path('red overall score.png') }}" alt="">
+                    @elseif(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 50)
+                        <img class="state-color-image" src="{{ public_path('orange overall score.png') }}" alt="">
+                    @elseif(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 80)
+                        <img class="state-color-image" src="{{ public_path('yellow overall score.png') }}" alt="">
+                    @else
+                        <img class="state-color-image" src="{{ public_path('top overall score.png') }}" alt="">
+                    @endif
+                    <img class="stats-picture" src=" {{public_path('expat.png')}}" alt="">
+                </div>
+
+                    <!-- Start of External -->
+                <div class="quartile-orgnaztion-details-right-column">
+                    <div class="inside-focus-result">
+                        <div class="inside-focus-result-header @if($focus_result_expat[1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <h3 class="inside-focus-result-header-text">INSIDE</h3>
+                            <h3 class="inside-focus-result-header-number">{{number_format($focus_result_expat[1]['value'],0);}}</h3>
+                        </div>
+                        <div class="inside-focus-result-accountability @if($focus_result_expat[1]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-accountability-text">{{ $focus_result_expat[1]['dimensional_results'][0]['key']; }}</p>
+                            <p class="inside-focuse-result-accountability-number">{{ number_format($focus_result_expat[1]['dimensional_results'][0]['value'] ,0); }}</p>
+                        </div>
+                        <div class="inside-focus-result-leadership @if($focus_result_expat[1]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-leadership-text">{{ $focus_result_expat[1]['dimensional_results'][1]['key']; }}</p>
+                            <p class="inside-focus-result-leadership-number">{{ number_format($focus_result_expat[1]['dimensional_results'][1]['value'] ,0) }}</p>
+                        </div>
+                        <div>
+                            <div class="responsibilities @if($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="responsibilities-text">{{ $focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][0]['key']; }}<span class="responsibilities-number">{{ number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0);}}</span></p>
+                            </div>
+                            <div class="trustworthiness @if($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="turstworthiness-text">{{ $focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][1]['key']; }}<span class="turstworthiness-number">{{ number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0);}}</span></p>
+                            </div>
+                            <div class="commitment @if($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="commitment-text">{{ $focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][2]['key']; }} <span class="commitment-number">{{ number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0);}}</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="democratic @if($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="democratic-text">{{ $focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][0]['key']; }}  <span class="democratic-number">{{  number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0); }}</span> </p>
+                            </div>
+                            <div class="autocratic @if($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="autocratic-text">{{ $focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][1]['key']; }} <span class="autocratic-number">{{  number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="transformational @if($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="transformational-text">{{ $focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][2]['key']; }} <span class="transformational-number">{{  number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div class="inside-focus-result-working-environment  @if($focus_result_expat[1]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-working-environment-text">{{ $focus_result_expat[1]['dimensional_results'][2]['key']; }}</p>
+                            <p class="inside-focus-result-working-environment-number">{{ number_format($focus_result_expat[1]['dimensional_results'][2]['value'],0); }}</p>
+                        </div>
+                        <div class="inside-focus-result-motivation @if($focus_result_expat[1]['dimensional_results'][3]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][3]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][3]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-motivation-text">{{ $focus_result_expat[1]['dimensional_results'][3]['key']; }}</p>
+                            <p class="inside-focus-result-motivation-number">{{ number_format($focus_result_expat[1]['dimensional_results'][3]['value'],0); }}</p>
+                        </div>
+                        <div>
+                            <div class="trusting @if($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="trusting-text">{{ $focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][0]['key']; }} <span class="trusting-number">{{ number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0); }}</span></p>
+                            </div>
+                            <div class="fairness @if($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="fairness-text">{{ $focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][1]['key']; }} <span class="fairness-number">{{ number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="respect @if($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="respect-text">{{ $focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][2]['key']; }} <span class="respect-number">{{ number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="reward @if($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="reward-text">{{ $focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][0]['key']; }} <span class="reward-number">{{ number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0);}}</span></p>
+                            </div>
+                            <div class="inspire @if($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="inspire-text">{{$focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][1]['key']; }}<span class="inspire-number">{{number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][1]['value'] ,0);}}</span></p>
+                            </div>
+                            <div class="recognition @if($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="recognition-text">{{$focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][2]['key']; }} <span class="recognition-number">{{number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="outside-focus-result">
+                        <div class="inside-focus-result-header @if($focus_result_expat[0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <h3 class="inside-focus-result-header-text">OUTSIDE</h3>
+                            <h3 class="inside-focus-result-header-number">{{ number_format($focus_result_expat[0]['value'],0); }}</h3>
+                        </div>
+                        <div class="inside-focus-result-accountability @if($focus_result_expat[0]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-accountability-text">{{ $focus_result_expat[0]['dimensional_results'][0]['key']; }}</p>
+                            <p class="inside-focuse-result-accountability-number">{{ number_format($focus_result_expat[0]['dimensional_results'][0]['value'],0);}}</p>
+                        </div>
+                        <div class="inside-focus-result-leadership @if($focus_result_expat[0]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-leadership-text">{{ $focus_result_expat[0]['dimensional_results'][1]['key']; }}</p>
+                            <p class="inside-focus-result-leadership-number">{{ number_format($focus_result_expat[0]['dimensional_results'][1]['value'],0); }}</p>
+                        </div>
+                        <div>
+                            <div class="responsibilities @if($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="responsibilities-text">{{ $focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][0]['key']; }}<span class="responsibilities-number" style="margin-left:110px">{{number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0); }}</span></p>
+                            </div>
+                            <div class="trustworthiness @if($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="turstworthiness-text">{{ $focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][1]['key']; }}<span class="turstworthiness-number" style="margin-left:110px">{{number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="commitment @if($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="commitment-text">{{ $focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][2]['key']; }} <span class="commitment-number" style="margin-left:90px">{{ number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="democratic @if($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="democratic-text">{{ $focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['key']; }}  <span class="democratic-number" style="margin-left:80px">{{ number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0); }}</span> </p>
+                            </div>
+                            <div class="autocratic @if($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="autocratic-text">{{$focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][1]['key'];}} <span class="autocratic-number" style="margin-left:80px">{{ number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="transformational @if($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="transformational-text">{{$focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['key'] }}<span class="transformational-number" style="margin-left: 90px;">{{ number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div class="inside-focus-result-working-environment @if($focus_result_expat[0]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-working-environment-text">External <br> Relation</p>
+                            <p class="inside-focus-result-working-environment-number">{{number_format($focus_result_expat[0]['dimensional_results'][2]['value'],0) }}</p>
+                        </div>
+                        <div class="inside-focus-result-motivation @if($focus_result_expat[0]['dimensional_results'][3]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][3]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][3]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            <p class="inside-focus-result-motivation-text">{{$focus_result_expat[0]['dimensional_results'][3]['key'] }}</p>
+                            <p class="inside-focus-result-motivation-number">{{number_format($focus_result_expat[0]['dimensional_results'][3]['value'],0); }}</p>
+                        </div>
+                        <div>
+                            <div class="trusting @if($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="trusting-text">{{ $focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][0]['key']; }}<span class="trusting-number" style="margin-left:90px">{{number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0);}}</span></p>
+                            </div>
+                            <div class="fairness  @if($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="fairness-text">{{ $focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][1]['key']; }} <span class="fairness-number" style="margin-left:75px">{{ number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0); }}</span></p>
+                            </div>
+                            <div class="respect  @if($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="respect-text">{{ $focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][2]['key']; }} <span class="respect-number">{{ number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0); }}</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="reward @if($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][0]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="reward-text">{{ $focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][0]['key'];}} <span class="reward-number" style="margin-left: 110px;">{{ number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0); }}</span></p>
+                            </div>
+                            <div class="inspire @if($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][1]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="inspire-text">{{ $focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][1]['key']; }} <span class="inspire-number" style="margin-left: 90px;">{{ number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0);}}</span></p>
+                            </div>
+                            <div class="recognition @if($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 25) bottom-quartile @elseif($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 50) third-quartile @elseif($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][2]['value'] <= 80) second-quartile @else top-quartile @endif">
+                                <p class="recognition-text">{{ $focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][2]['key'];}} <span class="recognition-number" style="margin-left: 70px;">{{ number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0);}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="quadrants" style="position: relative; top: -950px;">
+                <span class="scale">Scale:</span>
+                <div>
+                    <span class="quadrant top-quartile"></span>
+                    <span class="text-for-quartile">TOP QUARTILE</span>
+                    <span class="quadrant second-quartile"></span>
+                    <span class="text-for-quartile">SECOND QUARTILE</span>
+                    <span class="quadrant third-quartile"></span>
+                    <span class="text-for-quartile">THIRD QUARTILE</span>
+                    <span class="quadrant bottom-quartile"></span>
+                    <span class="text-for-quartile">BOTTOM QUARTILE</span>
+                </div>
+            </div>
+        
+        </div> 
+
+        <div class="indicators-by-gender" style="position: relative; top: 17400px;">
+            <p class="center-title title">INDICATORS BY NATIONALITY</p>
+    
+            <table>
+                <tr>
+                    <th style="background-color: white;"> </th>
+                    <th>OVERALL SCORE</th>
+                    <th>{{ $focus_result[1]['dimensional_results'][0]['key']; }}</th>
+                    <th>{{ $focus_result[1]['dimensional_results'][1]['key']; }}</th>
+                    <th>{{ $focus_result[1]['dimensional_results'][2]['key']; }}</th>
+                    <th>{{ $focus_result[1]['dimensional_results'][3]['key']; }}</th>
+                    <th>{{ $focus_result[0]['dimensional_results'][0]['key']; }}</th>
+                    <th>{{ $focus_result[0]['dimensional_results'][1]['key']; }}</th>
+                    <th>{{ $focus_result[0]['dimensional_results'][2]['key']; }}</th>
+                    <th>{{ $focus_result[0]['dimensional_results'][3]['key']; }}</th>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>OVERALL</td>
+                    <td class="@if(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 25) bottom-quartile @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 50) third-quartile @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 80) second-quartile @else top-quartile @endif">{{ number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0); }}</td>
+                    <td class="@if(number_format($focus_result[1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[1]['dimensional_results'][0]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result[1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[1]['dimensional_results'][1]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result[1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[1]['dimensional_results'][2]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result[1]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[1]['dimensional_results'][3]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result[0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[0]['dimensional_results'][0]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result[0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[0]['dimensional_results'][1]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result[0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[0]['dimensional_results'][2]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result[0]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[0]['dimensional_results'][3]['value'],0); }}</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>LOCAL</td>
+                    <td class="@if(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 25) bottom-quartile @elseif(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 50) third-quartile @elseif(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 80) second-quartile @else top-quartile @endif">{{ number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0); }}</td>
+                    <td class="@if(number_format($focus_result_local[1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_local[1]['dimensional_results'][0]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_local[1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_local[1]['dimensional_results'][1]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_local[1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_local[1]['dimensional_results'][2]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_local[1]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_local[1]['dimensional_results'][3]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_local[0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_local[0]['dimensional_results'][0]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_local[0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_local[0]['dimensional_results'][1]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_local[0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_local[0]['dimensional_results'][2]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_local[0]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_local[0]['dimensional_results'][3]['value'],0); }}</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>EXPAT</td>
+                    <td class="@if(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 25) bottom-quartile @elseif(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 50) third-quartile @elseif(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 80) second-quartile @else top-quartile @endif">{{ number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0); }}</td>
+                    <td class="@if(number_format($focus_result_expat[1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_expat[1]['dimensional_results'][0]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_expat[1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_expat[1]['dimensional_results'][1]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_expat[1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_expat[1]['dimensional_results'][2]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_expat[1]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_expat[1]['dimensional_results'][3]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_expat[0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_expat[0]['dimensional_results'][0]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_expat[0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_expat[0]['dimensional_results'][1]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_expat[0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_expat[0]['dimensional_results'][2]['value'],0); }}</td>
+                    <td class="@if(number_format($focus_result_expat[0]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result_expat[0]['dimensional_results'][3]['value'],0); }}</td>
+                </tr>
+            </table>        
+          
+            <div class="quadrants">
+                <span class="scale">Scale:</span>
+                <div>
+                    <span class="quadrant top-quartile"></span>
+                    <span class="text-for-quartile">TOP QUARTILE</span>
+                    <span class="quadrant second-quartile"></span>
+                    <span class="text-for-quartile">SECOND QUARTILE</span>
+                    <span class="quadrant third-quartile"></span>
+                    <span class="text-for-quartile">THIRD QUARTILE</span>
+                    <span class="quadrant bottom-quartile"></span>
+                    <span class="text-for-quartile">BOTTOM QUARTILE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="practices-by-gender" style="position: relative; top: 19000px;">
+            <p class="center-title title"> PRACTICES BY NATIONALITY </p>
+            <table>
+                <tr>
+                    <th>INDICATOR</th>
+                    <th>PRACTICE</th>
+                    <th>OVERALL SCORE</th>
+                    <th>LOCAL</th>
+                    <th>EXPAT</th>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>{{ $focus_result[1]['dimensional_results'][0]['key']; }}</td>
+                    <td>
+                        <div class="practice-1">{{$focus_result[1]['dimensional_results'][0]['dimensional_results'][0]['key'];}}</div>
+                        <div class="practice-2">{{$focus_result[1]['dimensional_results'][0]['dimensional_results'][1]['key'];}}</div>
+                        <div class="practice-3">{{$focus_result[1]['dimensional_results'][0]['dimensional_results'][2]['key'];}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3  @if(number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>{{ $focus_result[1]['dimensional_results'][1]['key']; }}</td>
+                    <td>
+                        <div class="practice-1">{{$focus_result[1]['dimensional_results'][1]['dimensional_results'][0]['key'];}}</div>
+                        <div class="practice-2">{{$focus_result[1]['dimensional_results'][1]['dimensional_results'][1]['key'];}}</div>
+                        <div class="practice-3">{{$focus_result[1]['dimensional_results'][1]['dimensional_results'][2]['key'];}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3  @if(number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][1]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>{{ $focus_result[1]['dimensional_results'][2]['key']; }}</td>
+                    <td>
+                        <div class="practice-1">{{$focus_result[1]['dimensional_results'][2]['dimensional_results'][0]['key'];}}</div>
+                        <div class="practice-2">{{$focus_result[1]['dimensional_results'][2]['dimensional_results'][1]['key'];}}</div>
+                        <div class="practice-3">{{$focus_result[1]['dimensional_results'][2]['dimensional_results'][2]['key'];}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3  @if(number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][2]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>{{ $focus_result[1]['dimensional_results'][3]['key']; }}</td>
+                    <td>
+                        <div class="practice-1">{{$focus_result[1]['dimensional_results'][3]['dimensional_results'][0]['key'];}}</div>
+                        <div class="practice-2">{{$focus_result[1]['dimensional_results'][3]['dimensional_results'][1]['key'];}}</div>
+                        <div class="practice-3">{{$focus_result[1]['dimensional_results'][3]['dimensional_results'][2]['key'];}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3  @if(number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[1]['dimensional_results'][3]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>{{ $focus_result[0]['dimensional_results'][0]['key']; }}</td>
+                    <td>
+                        <div class="practice-1">{{$focus_result[0]['dimensional_results'][0]['dimensional_results'][0]['key'];}}</div>
+                        <div class="practice-2">{{$focus_result[0]['dimensional_results'][0]['dimensional_results'][1]['key'];}}</div>
+                        <div class="practice-3">{{$focus_result[0]['dimensional_results'][0]['dimensional_results'][2]['key'];}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3  @if(number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][0]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>{{ $focus_result[0]['dimensional_results'][1]['key']; }}</td>
+                    <td>
+                        <div class="practice-1">{{$focus_result[0]['dimensional_results'][1]['dimensional_results'][0]['key'];}}</div>
+                        <div class="practice-2">{{$focus_result[0]['dimensional_results'][1]['dimensional_results'][1]['key'];}}</div>
+                        <div class="practice-3">{{$focus_result[0]['dimensional_results'][1]['dimensional_results'][2]['key'];}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3  @if(number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][1]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>{{ $focus_result[0]['dimensional_results'][2]['key']; }}</td>
+                    <td>
+                        <div class="practice-1">{{$focus_result[0]['dimensional_results'][2]['dimensional_results'][0]['key'];}}</div>
+                        <div class="practice-2">{{$focus_result[0]['dimensional_results'][2]['dimensional_results'][1]['key'];}}</div>
+                        <div class="practice-3">{{$focus_result[0]['dimensional_results'][2]['dimensional_results'][2]['key'];}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3  @if(number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][2]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>{{ $focus_result[0]['dimensional_results'][3]['key']; }}</td>
+                    <td>
+                        <div class="practice-1">{{$focus_result[0]['dimensional_results'][3]['dimensional_results'][0]['key'];}}</div>
+                        <div class="practice-2">{{$focus_result[0]['dimensional_results'][3]['dimensional_results'][1]['key'];}}</div>
+                        <div class="practice-3">{{$focus_result[0]['dimensional_results'][3]['dimensional_results'][2]['key'];}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3  @if(number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_local[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                    <td>
+                        <div class="value-1 @if(number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][0]['value'],0);}}</div>
+                        <div class="value-2 @if(number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][1]['value'],0);}}</div>
+                        <div class="value-3 @if(number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{number_format($focus_result_expat[0]['dimensional_results'][3]['dimensional_results'][2]['value'],0);}}</div>
+                    </td>
+                </tr>
+            </table>
+            <div class="quadrants">
+                <span class="scale">Scale:</span>
+                <div>
+                    <span class="quadrant top-quartile"></span>
+                    <span class="text-for-quartile">TOP QUARTILE</span>
+                    <span class="quadrant second-quartile"></span>
+                    <span class="text-for-quartile">SECOND QUARTILE</span>
+                    <span class="quadrant third-quartile"></span>
+                    <span class="text-for-quartile">THIRD QUARTILE</span>
+                    <span class="quadrant bottom-quartile"></span>
+                    <span class="text-for-quartile">BOTTOM QUARTILE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="center-title" style="position: relative; top: 20100px;">
+            <h1 class="custom-title">HIGHEST AND LOWEST 5 PRACTICES</h1>
+                <h3 class="heading" style="position: relative; left:-400px; top:80px">OVERALL OHX-RAY <br> SCORE</h3>
+                <h3 class="heading" style="position: relative; top:40px;">Male Level</h3>
+                <h3 class="heading" style="position: relative; left:990px; width:180px;">Female Level</h3>
+            <div class="final-row" style="margin-bottom: 100px;">
+                <ul class="final-col" style="margin-right: 100px;">
+                    @for($i = 0; $i < 5;$i++) 
+                        <li class="final-item @if($sort_results[$i]['value'] <= 25) bottom-quartile @elseif($sort_results[$i]['value'] <= 50) third-quartile @elseif($sort_results[$i]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            {{$sort_results[$i]['key']}}
+                            <span class="grade">{{ number_format($sort_results[$i]['value'],0); }}</span>
+                        </li>
+                    @endfor
+                </ul>
+                <ul class="final-col" style="margin-right: 100px;">
+                    @for($i = 0; $i < 5;$i++) 
+                        <li class="final-item @if($sort_results_local[$i]['value'] <= 25) bottom-quartile @elseif($sort_results_local[$i]['value'] <= 50) third-quartile @elseif($sort_results_local[$i]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            {{$sort_results_local[$i]['key']}}
+                            <span class="grade">{{ number_format($sort_results_local[$i]['value'],0); }}</span>
+                        </li>
+                    @endfor
+                </ul>
+                <ul class="final-col">
+                    @for($i = 0; $i < 5;$i++) 
+                        <li class="final-item @if($sort_results_expat[$i]['value'] <= 25) bottom-quartile @elseif($sort_results_expat[$i]['value'] <= 50) third-quartile @elseif($sort_results_expat[$i]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            {{$sort_results_expat[$i]['key']}}
+                            <span class="grade">{{ number_format($sort_results_expat[$i]['value'],0); }}</span>
+                        </li>
+                    @endfor
+                </ul>
+            </div>
+            <div class="final-row" >
+                <ul class="final-col" style="margin-right: 100px;">
+                    @for($i = 23; $i>18;$i--)
+                        <li class="final-item @if($sort_results[$i]['value'] <= 25) bottom-quartile @elseif($sort_results[$i]['value'] <= 50) third-quartile @elseif($sort_results[$i]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            {{$sort_results[$i]['key']}}
+                            <span class="grade">{{ number_format($sort_results[$i]['value'],0); }}</span>
+                        </li>
+                    @endfor
+                </ul>
+                <ul class="final-col" style="margin-right: 100px;">
+                    @for($i = 23; $i>18;$i--)
+                        <li class="final-item @if($sort_results_local[$i]['value'] <= 25) bottom-quartile @elseif($sort_results_local[$i]['value'] <= 50) third-quartile @elseif($sort_results_local[$i]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            {{$sort_results_local[$i]['key']}}
+                            <span class="grade">{{ number_format($sort_results_local[$i]['value'],0); }}</span>
+                        </li>
+                    @endfor
+                </ul>
+                <ul class="final-col">
+                    @for($i = 23; $i>18;$i--)
+                        <li class="final-item @if($sort_results_expat[$i]['value'] <= 25) bottom-quartile @elseif($sort_results_expat[$i]['value'] <= 50) third-quartile @elseif($sort_results_expat[$i]['value'] <= 80) second-quartile @else top-quartile @endif">
+                            {{$sort_results_expat[$i]['key']}}
+                            <span class="grade">{{ number_format($sort_results_expat[$i]['value'],0); }}</span>
+                        </li>
+                    @endfor
+                </ul>
+            </div>
+            <div class="quadrants">
+                <span class="scale">Scale:</span>
+                <div>
+                    <span class="quadrant top-quartile"></span>
+                    <span class="text-for-quartile">TOP QUARTILE</span>
+                    <span class="quadrant second-quartile"></span>
+                    <span class="text-for-quartile">SECOND QUARTILE</span>
+                    <span class="quadrant third-quartile"></span>
+                    <span class="text-for-quartile">THIRD QUARTILE</span>
+                    <span class="quadrant bottom-quartile"></span>
+                    <span class="text-for-quartile">BOTTOM QUARTILE</span>
+                </div>
+            </div>
+        </div>
+
 </body>
 </html>
