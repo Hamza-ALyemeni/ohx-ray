@@ -691,6 +691,15 @@
 
         /* *************************** */
 
+        .benchmark-data-company-score{
+           
+        }
+
+        .benchmark-data h3{
+            color: #397b23;
+            font-weight: 700;
+        }
+
         .benchmark-data {
             page-break-before: always; /* Force a new page */
             page-break-inside: avoid; /* Prevent content from splitting */
@@ -698,8 +707,28 @@
         }
 
         .benchmark-data table, .benchmark-data th,.benchmark-data td {
-            border: 1px solid black;
+            border: 10px solid white;
             border-collapse: collapse;
+        }
+
+        .benchmark-data table{
+            height: 500px;
+        }
+
+        .benchmark-data th{
+            width: 200px;
+        }
+
+      
+        .benchmark-data td:first-child
+        {
+            background-color: #eee;
+            width: 200px;
+        }
+
+        .benchmark-data th{
+            background-color: #eee;
+            width: 70px;
         }
 
         /* *************************** */
@@ -1224,70 +1253,84 @@
     </div>
     
     <div class="benchmark-data">
-        <h4>{{ $company->name; }}</h4>
-        <table >
-            <tr>
+        @if(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 25)
+            <img class="state-color-image" src="{{ public_path('red overall score.png') }}" alt="">
+        @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 50)
+            <img class="state-color-image" src="{{ public_path('orange overall score.png') }}" alt="">
+        @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 80)
+            <img class="state-color-image" src="{{ public_path('yellow overall score.png') }}" alt="">
+        @else
+            <img class="state-color-image" src="{{ public_path('top overall score.png') }}" alt="">
+        @endif
+
+        <div class="benchmark-data-company-score @if(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 25) red-text @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 50) orange-text @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 80) yellow-text @else green-text @endif">
+           {{ number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0)}}
+        </div>
+
+        <h3>{{ $company->name; }}</h3>
+        <table>
+            <tr style="text-align: center;">
                 <th>Indicator</th>
                 <th>{{ $company->name;}}</th>
                 <th>Private</th>
                 <th>Public</th>
                 <th>non-profit</th>
             </tr>
-            <tr>
+            <tr style="text-align: center;">
                 <td>{{ $focus_result[1]['dimensional_results'][0]['key']; }}</td>
-                <td>{{ number_format($focus_result[1]['dimensional_results'][0]['value'],0); }}</td>
-                <td>61</td>
-                <td>64</td>
-                <td>63</td>
+                <td class="@if(number_format($focus_result[1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[1]['dimensional_results'][0]['value'],0); }}</td>
+                <td class="@if(number_format($private[1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($private[1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($private[1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($private[1]['dimensional_results'][0]['value'],0); }}</td>
+                <td class="@if(number_format($public[1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($public[1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($public[1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($public[1]['dimensional_results'][0]['value'],0); }}</td>
+                <td class="@if(number_format($nonprofit[1]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($nonprofit[1]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($nonprofit[1]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($nonprofit[1]['dimensional_results'][0]['value'],0); }}</td>
             </tr>
-            <tr>
-                <td>{{ $focus_result[1]['dimensional_results'][1]['key']; }}</td>
-                <td>{{ number_format($focus_result[1]['dimensional_results'][1]['value'],0); }}</td>
-                <td>61</td>
-                <td>68</td>
-                <td>72</td>
+            <tr style="text-align: center;">
+                <td class="">{{ $focus_result[1]['dimensional_results'][1]['key']; }}</td>
+                <td class="@if(number_format($focus_result[1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[1]['dimensional_results'][1]['value'],0); }}</td>
+                <td class="@if(number_format($private[1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($private[1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($private[1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($private[1]['dimensional_results'][1]['value'],0); }}</td>
+                <td class="@if(number_format($public[1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($public[1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($public[1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($public[1]['dimensional_results'][1]['value'],0); }}</td>
+                <td class="@if(number_format($nonprofit[1]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($nonprofit[1]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($nonprofit[1]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($nonprofit[1]['dimensional_results'][1]['value'],0); }}</td>
             </tr>
-            <tr>
-                <td>{{ $focus_result[1]['dimensional_results'][2]['key']; }}</td>
-                <td>{{ number_format($focus_result[1]['dimensional_results'][2]['value'],0); }}</td>
-                <td>59</td>
-                <td>60</td>
-                <td>58</td>
+            <tr style="text-align: center;">
+                <td class="">{{ $focus_result[1]['dimensional_results'][2]['key']; }}</td>
+                <td class="@if(number_format($focus_result[1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[1]['dimensional_results'][2]['value'],0); }}</td>
+                <td class="@if(number_format($private[1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($private[1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($private[1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($private[1]['dimensional_results'][2]['value'],0); }}</td>
+                <td class="@if(number_format($public[1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($public[1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($public[1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($public[1]['dimensional_results'][2]['value'],0); }}</td>
+                <td class="@if(number_format($nonprofit[1]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($nonprofit[1]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($nonprofit[1]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($nonprofit[1]['dimensional_results'][2]['value'],0); }}</td>
             </tr>
-            <tr>
+            <tr style="text-align: center;">
                 <td>{{ $focus_result[1]['dimensional_results'][3]['key']; }}</td>
-                <td>{{ number_format($focus_result[1]['dimensional_results'][3]['value'],0); }}</td>
-                <td>60</td>
-                <td>66</td>
-                <td>68</td>
+                <td class="@if(number_format($focus_result[1]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[1]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[1]['dimensional_results'][3]['value'],0); }}</td>
+                <td class="@if(number_format($private[1]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($private[1]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($private[1]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($private[1]['dimensional_results'][3]['value'],0); }}</td>
+                <td class="@if(number_format($public[1]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($public[1]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($public[1]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($public[1]['dimensional_results'][3]['value'],0); }}</td>
+                <td class="@if(number_format($nonprofit[1]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($nonprofit[1]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($nonprofit[1]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($nonprofit[1]['dimensional_results'][3]['value'],0); }}</td>
             </tr>
-            <tr>
+            <tr style="text-align: center;">
                 <td>{{ $focus_result[0]['dimensional_results'][0]['key']; }}</td>
-                <td>{{ number_format($focus_result[0]['dimensional_results'][0]['value'],0); }}</td>
-                <td>63</td>
-                <td>66</td>
-                <td>72</td>
+                <td class="@if(number_format($focus_result[0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[0]['dimensional_results'][0]['value'],0); }}</td>
+                <td class="@if(number_format($private[0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($private[0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($private[0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($private[0]['dimensional_results'][0]['value'],0); }}</td>
+                <td class="@if(number_format($public[0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($public[0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($public[0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($public[0]['dimensional_results'][0]['value'],0); }}</td>
+                <td class="@if(number_format($nonprofit[0]['dimensional_results'][0]['value'],0) <= 25) bottom-quartile @elseif(number_format($nonprofit[0]['dimensional_results'][0]['value'],0) <= 50) third-quartile @elseif(number_format($nonprofit[0]['dimensional_results'][0]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($nonprofit[0]['dimensional_results'][0]['value'],0); }}</td>
             </tr>
-            <tr>
-                <td>{{ $focus_result[0]['dimensional_results'][1]['key']; }}</td>
-                <td>{{ number_format($focus_result[0]['dimensional_results'][1]['value'],0); }}</td>
-                <td>59</td>
-                <td>66</td>
-                <td>67</td>
+            <tr style="text-align: center;">
+                <td class="">{{ $focus_result[0]['dimensional_results'][1]['key']; }}</td>
+                <td class="@if(number_format($focus_result[0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[0]['dimensional_results'][1]['value'],0); }}</td>
+                <td class="@if(number_format($private[0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($private[0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($private[0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($private[0]['dimensional_results'][1]['value'],0); }}</td>
+                <td class="@if(number_format($public[0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($public[0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($public[0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($public[0]['dimensional_results'][1]['value'],0); }}</td>
+                <td class="@if(number_format($nonprofit[0]['dimensional_results'][1]['value'],0) <= 25) bottom-quartile @elseif(number_format($nonprofit[0]['dimensional_results'][1]['value'],0) <= 50) third-quartile @elseif(number_format($nonprofit[0]['dimensional_results'][1]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($nonprofit[0]['dimensional_results'][1]['value'],0); }}</td>
             </tr>
-            <tr>
+            <tr style="text-align: center;">
                 <td>{{ $focus_result[0]['dimensional_results'][2]['key']; }}</td>
-                <td>{{ number_format($focus_result[0]['dimensional_results'][2]['value'],0); }}</td>
-                <td>59</td>
-                <td>66</td>
-                <td>68</td>
+                <td class="@if(number_format($focus_result[0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[0]['dimensional_results'][2]['value'],0); }}</td>
+                <td class="@if(number_format($private[0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($private[0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($private[0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($private[0]['dimensional_results'][2]['value'],0); }}</td>
+                <td class="@if(number_format($public[0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($public[0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($public[0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($public[0]['dimensional_results'][2]['value'],0); }}</td>
+                <td class="@if(number_format($nonprofit[0]['dimensional_results'][2]['value'],0) <= 25) bottom-quartile @elseif(number_format($nonprofit[0]['dimensional_results'][2]['value'],0) <= 50) third-quartile @elseif(number_format($nonprofit[0]['dimensional_results'][2]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($nonprofit[0]['dimensional_results'][2]['value'],0); }}</td>
             </tr>
-            <tr>
+            <tr style="text-align: center;">
                 <td>{{ $focus_result[0]['dimensional_results'][3]['key']; }}</td>
-                <td>{{ number_format($focus_result[0]['dimensional_results'][3]['value'],0); }}</td>
-                <td>61</td>
-                <td>66</td>
-                <td>71</td>
+                <td class="@if(number_format($focus_result[0]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($focus_result[0]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($focus_result[0]['dimensional_results'][3]['value'],0); }}</td>
+                <td class="@if(number_format($private[0]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($private[0]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($private[0]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($private[0]['dimensional_results'][3]['value'],0); }}</td>
+                <td class="@if(number_format($public[0]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($public[0]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($public[0]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($public[0]['dimensional_results'][3]['value'],0); }}</td>
+                <td class="@if(number_format($nonprofit[0]['dimensional_results'][3]['value'],0) <= 25) bottom-quartile @elseif(number_format($nonprofit[0]['dimensional_results'][3]['value'],0) <= 50) third-quartile @elseif(number_format($nonprofit[0]['dimensional_results'][3]['value'],0) <= 80) second-quartile @else top-quartile @endif">{{ number_format($nonprofit[0]['dimensional_results'][3]['value'],0); }}</td>
             </tr>
         </table>
     </div>

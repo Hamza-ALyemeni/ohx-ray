@@ -327,6 +327,22 @@ class SurveysExport implements   FromArray
         }
         array_multisort($v, SORT_DESC, $query['sort_results']);
 
+
+        $obj = new \stdClass();
+        $obj->company_types = 2;
+        $query['private'] = $query['data']->focus_results($obj,'Benchmark');
+
+
+        $obj = new \stdClass();
+        $obj->company_types = 1;
+        $query['public'] = $query['data']->focus_results($obj,'Benchmark');
+
+
+        $obj = new \stdClass();
+        $obj->company_types= 3;
+        $query['nonprofit'] = $query['data']->focus_results($obj,'Benchmark');
+
+
         $obj = new \stdClass();
         $obj->gender = 1;
         $obj->company_id[0] = $company;

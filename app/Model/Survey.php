@@ -119,6 +119,15 @@ class Survey extends Model
             if ($request->company_id[0] != 0)
                 $sub_query .= " And CE.company_id in (" . implode(',', $request->company_id) . ") ";
         }*/
+
+        if (@$type) {
+            if($type == 'Benchmark'){
+                if (@$request->company_types){
+                    $sub_query .= " And CO.company_type_id = " . $request->company_types . " ";
+                }
+            }
+        }
+
         if(@$type){
             if($type == 'from'){
                 if (@$request->from && count($request->from ) > 0 && $request->from[0] != 0)
@@ -207,20 +216,20 @@ class Survey extends Model
         //         ORDER BY company_id
         //  ) AS subquery GROUP BY phase,`id`   ". $Phase." ) AS SC on SC.id = SE.survey_company_id
         // where 1 ". $sub_query." group by SE.id ");
-//        if($count[0]->count < 5){
-//            return 0;
-//        }
+        //        if($count[0]->count < 5){
+        //            return 0;
+        //        }
 
-$count = DB::select("SELECT SE.id FROM `users` 
-INNER JOIN `survey_employees` as SE on users.id = SE.employee_id
- INNER JOIN `company_employees` as CE ON CE.employee_id = SE.employee_id  
- INNER JOIN `companies` AS CO on CO.id = CE.company_id
- INNER JOIN `survey_solutions` as SS ON SS.survey_employee_id = SE.id
- INNER JOIN `survey_companies` as SC ON SC.id = SE.survey_company_id
-where 1 ". $sub_query." group by SE.id ");
-//        if($count[0]->count < 5){
-//            return 0;
-//        }
+        $count = DB::select("SELECT SE.id FROM `users` 
+        INNER JOIN `survey_employees` as SE on users.id = SE.employee_id
+        INNER JOIN `company_employees` as CE ON CE.employee_id = SE.employee_id  
+        INNER JOIN `companies` AS CO on CO.id = CE.company_id
+        INNER JOIN `survey_solutions` as SS ON SS.survey_employee_id = SE.id
+        INNER JOIN `survey_companies` as SC ON SC.id = SE.survey_company_id
+        where 1 ". $sub_query." group by SE.id ");
+        //        if($count[0]->count < 5){
+        //            return 0;
+        //        }
         $result = DB::select("SELECT
 
             AVG(Section1) as Section1,
