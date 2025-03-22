@@ -690,14 +690,35 @@
         /* *************************** */
 
         /* *************************** */
+       
 
         .benchmark-data-company-score{
-           
+            -webkit-text-stroke: 1px black; /* حجم ولون الحواف */     
+            font-size: 34px;
+            position: relative;
+            left: 105px;
+            top: -127px;
         }
+
+        .benchmark-data-private-score{
+            -webkit-text-stroke: 1px black; /* حجم ولون الحواف */     
+            font-size: 34px;
+        }
+
+        .benchmark-data-public-score{
+            -webkit-text-stroke: 1px black; /* حجم ولون الحواف */     
+            font-size: 34px;
+        }
+
+        .benchmark-data-non-profit-score{
+            -webkit-text-stroke: 1px black; /* حجم ولون الحواف */     
+            font-size: 34px;
+        }
+
 
         .benchmark-data h3{
             color: #397b23;
-            font-weight: 700;
+            font-weight: 900;
         }
 
         .benchmark-data {
@@ -1268,6 +1289,51 @@
         </div>
 
         <h3>{{ $company->name; }}</h3>
+
+        <span class="top-quartile" style="position:relative; left:300px; top:-240px; width:300px; padding:20px; border-radius:10px;">BenchMark Data</span>
+
+        @if(number_format((($private[0]['value'] + $private[1]['value']) / 2), 0) <= 25)
+            <img class="state-color-image" src="{{ public_path('red overall score.png') }}" alt="">
+        @elseif(number_format((($private[0]['value'] + $private[1]['value']) / 2), 0) <= 50)
+            <img class="state-color-image" src="{{ public_path('orange overall score.png') }}" alt="">
+        @elseif(number_format((($private[0]['value'] + $private[1]['value']) / 2), 0) <= 80)
+            <img class="state-color-image" src="{{ public_path('yellow overall score.png') }}" alt="">
+        @else
+            <img class="state-color-image" src="{{ public_path('top overall score.png') }}" alt="">
+        @endif
+
+        <div class="benchmark-data-private-score @if(number_format((($private[0]['value'] + $private[1]['value']) / 2), 0) <= 25) red-text @elseif(number_format((($private[0]['value'] + $private[1]['value']) / 2), 0) <= 50) orange-text @elseif(number_format((($private[0]['value'] + $private[1]['value']) / 2), 0) <= 80) yellow-text @else green-text @endif">
+           {{ number_format((($private[0]['value'] + $private[1]['value']) / 2), 0)}}
+        </div>
+
+        @if(number_format((($public[0]['value'] + $public[1]['value']) / 2), 0) <= 25)
+            <img class="state-color-image" src="{{ public_path('red overall score.png') }}" alt="">
+        @elseif(number_format((($public[0]['value'] + $public[1]['value']) / 2), 0) <= 50)
+            <img class="state-color-image" src="{{ public_path('orange overall score.png') }}" alt="">
+        @elseif(number_format((($public[0]['value'] + $public[1]['value']) / 2), 0) <= 80)
+            <img class="state-color-image" src="{{ public_path('yellow overall score.png') }}" alt="">
+        @else
+            <img class="state-color-image" src="{{ public_path('top overall score.png') }}" alt="">
+        @endif
+
+        <div class="benchmark-data-public-score @if(number_format((($public[0]['value'] + $public[1]['value']) / 2), 0) <= 25) red-text @elseif(number_format((($public[0]['value'] + $public[1]['value']) / 2), 0) <= 50) orange-text @elseif(number_format((($public[0]['value'] + $public[1]['value']) / 2), 0) <= 80) yellow-text @else green-text @endif">
+           {{ number_format((($public[0]['value'] + $public[1]['value']) / 2), 0)}}
+        </div>
+
+        @if(number_format((($nonprofit[0]['value'] + $nonprofit[1]['value']) / 2), 0) <= 25)
+            <img class="state-color-image" src="{{ public_path('red overall score.png') }}" alt="">
+        @elseif(number_format((($nonprofit[0]['value'] + $nonprofit[1]['value']) / 2), 0) <= 50)
+            <img class="state-color-image" src="{{ public_path('orange overall score.png') }}" alt="">
+        @elseif(number_format((($nonprofit[0]['value'] + $nonprofit[1]['value']) / 2), 0) <= 80)
+            <img class="state-color-image" src="{{ public_path('yellow overall score.png') }}" alt="">
+        @else
+            <img class="state-color-image" src="{{ public_path('top overall score.png') }}" alt="">
+        @endif
+
+        <div class="benchmark-data-public-score @if(number_format((($nonprofit[0]['value'] + $nonprofit[1]['value']) / 2), 0) <= 25) red-text @elseif(number_format((($nonprofit[0]['value'] + $nonprofit[1]['value']) / 2), 0) <= 50) orange-text @elseif(number_format((($nonprofit[0]['value'] + $nonprofit[1]['value']) / 2), 0) <= 80) yellow-text @else green-text @endif">
+           {{ number_format((($nonprofit[0]['value'] + $nonprofit[1]['value']) / 2), 0)}}
+        </div>
+
         <table>
             <tr style="text-align: center;">
                 <th>Indicator</th>
