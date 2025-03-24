@@ -128,6 +128,16 @@ class Survey extends Model
             }
         }
 
+        if (@$type) {
+            if($type == 'Sections'){
+                if (@$request->section_id){
+                    $sub_query .= " And S.id = " . $request->section_id . " ";
+                }
+            }
+        }
+
+
+
         if(@$type){
             if($type == 'from'){
                 if (@$request->from && count($request->from ) > 0 && $request->from[0] != 0)
@@ -225,6 +235,7 @@ class Survey extends Model
         INNER JOIN `company_employees` as CE ON CE.employee_id = SE.employee_id  
         INNER JOIN `companies` AS CO on CO.id = CE.company_id
         INNER JOIN `survey_solutions` as SS ON SS.survey_employee_id = SE.id
+        INNER JOIN `sections` as S ON S.id = SE.id
         INNER JOIN `survey_companies` as SC ON SC.id = SE.survey_company_id
         where 1 ". $sub_query." group by SE.id ");
         //        if($count[0]->count < 5){

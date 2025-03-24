@@ -2284,7 +2284,7 @@
             <img src="{{ public_path('by-level.png')}}" alt="">
         </div>
 
-        <div class="" style="position: relative; top:7400px; left:40px;">
+        <div class="" style="position: relative; top:8150px; left:40px;">
             <p class="center-title title">TOP MANAGEMENT HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_top[0]['value'] + $focus_result_top[1]['value']) / 2), 0) <= 25)
@@ -2474,7 +2474,7 @@
         </div>  
 
 
-        <div class="" style="position: relative; top:7400px; left:40px;">
+        <div class="" style="position: relative; top:8300px; left:40px;">
             <p class="center-title title">MIDDLE MANAGEMENT HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_middle[0]['value'] + $focus_result_middle[1]['value']) / 2), 0) <= 25)
@@ -2664,7 +2664,7 @@
         </div>  
 
 
-        <div class="" style="position: relative; top:7400px; left:40px;">
+        <div class="" style="position: relative; top:8500px; left:40px;">
             <p class="center-title title">EMPLOYEES HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_employee[0]['value'] + $focus_result_employee[1]['value']) / 2), 0) <= 25)
@@ -2853,7 +2853,7 @@
         
         </div>  
 
-        <div class="indicators-by-gender" style="position: relative; top: 7600px;">
+        <div class="indicators-by-gender" style="position: relative; top: 8750px;">
             <p class="center-title title"> INDICATORS BY LEVEL </p>
     
             <table>
@@ -2937,7 +2937,7 @@
         </div>
 
 
-        <div class="practices-by-gender" style="position: relative; top: 9000px;">
+        <div class="practices-by-gender" style="position: relative; top: 10400px;">
             <p class="center-title title"> PRACTICES BY LEVEL </p>
             <table>
                 <tr>
@@ -3188,7 +3188,7 @@
             </div>
         </div>
 
-        <div class="center-title" style="position: relative; top: 10000px;">
+        <div class="center-title" style="position: relative; top: 11650px;">
             <h1 class="custom-title">HIGHEST AND LOWEST 5 PRACTICES</h1>
                 <h3 class="heading" style="position: relative; left:-440px; top:170px">OVERALL OHX-RAY <br> SCORE</h3>
                 <h3 class="heading" style="position: relative; left:-140px; top:110px;">TOP <br> MANAGEMENT</h3>
@@ -4131,7 +4131,7 @@
             </div>
         </div>
 
-        <div class="practices-by-gender" style="position: relative; top: 16900px;">
+        <div class="practices-by-gender" style="position: relative; top: 16750px;">
             <p class="center-title title"> PRACTICES BY AGE </p>
             <table>
                 <tr>
@@ -5191,7 +5191,7 @@
             </div>
         </div>
 
-        <div class="center-title" style="position: relative; top: 23850px;">
+        <div class="center-title" style="position: relative; top: 23950px;">
             <h1 class="custom-title">HIGHEST AND LOWEST 5 PRACTICES</h1>
                 <h3 class="heading" style="position: relative; left:-400px; top:80px">OVERALL OHX-RAY <br> SCORE</h3>
                 <h3 class="heading" style="position: relative; top:40px;">Local Level</h3>
@@ -5260,6 +5260,62 @@
                     <span class="quadrant bottom-quartile"></span>
                     <span class="text-for-quartile">BOTTOM QUARTILE</span>
                 </div>
+            </div>
+        </div>
+
+        <div class="overall-health-vs-sectors-health" style="position: relative; top: 25400px;">
+            <div style="text-align:center;">
+                <div class="overall-health-vs-sectors-health-company-score">
+                    <h2>OVERALL HEALTH VS SECTORS HEALTH</h2>
+                    @if(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 25)
+                        <img class="overall-health-score-img" src="{{ public_path('red overall score.png') }}" alt="">
+                    @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 50)
+                        <img class="overall-health-score-img" src="{{ public_path('orange overall score.png') }}" alt="">
+                    @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 80)
+                        <img class="overall-health-score-img" src="{{ public_path('yellow overall score.png') }}" alt="">
+                    @else
+                        <img class="overall-health-score-img" src="{{ public_path('top overall score.png') }}" alt="">
+                    @endif
+
+                    @if(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 25)
+                        <p class="score red-text"  style="position:relative; top:-315px;">{{ number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) }}</p>
+                    @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 50)
+                        <p class="score orange-text"  style="position:relative; top:-315px;">{{ number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) }}</p>
+                    @elseif(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 80)
+                        <p class="score yellow-text" style="position:relative; top:-315px;">{{ number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) }}</p>
+                    @else
+                        <p class="score green-text"  style="position:relative; top:-315px;">{{ number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) }}</p>
+                    @endif
+                </div>
+            </div>
+            <div class="sections-health" style="border: 1px solid black;">
+                @foreach($sections_stats as $section)
+                <div style="display: inline-block; margin-right: 175px;">
+                    <p style="font-size:24px; position: relative; left:70px;">{{ $section['section_name'] }}</p>
+                    @php
+                        $sectionScore = number_format(($section[0]['value'] + $section[1]['value']) / 2, 0);
+                    @endphp
+                    
+                    @if($sectionScore <= 25)
+                        <img class="state-color-image" src="{{ public_path('red overall score.png') }}" alt="">
+                    @elseif($sectionScore <= 50)
+                        <img class="state-color-image" src="{{ public_path('orange overall score.png') }}" alt="">
+                    @elseif($sectionScore <= 80)
+                        <img class="state-color-image" src="{{ public_path('yellow overall score.png') }}" alt="">
+                    @else
+                        <img class="state-color-image" src="{{ public_path('top overall score.png') }}" alt="">
+                    @endif
+                    
+                    <div class="benchmark-data-private-score 
+                        @if($sectionScore <= 25) red-text 
+                        @elseif($sectionScore <= 50) orange-text 
+                        @elseif($sectionScore <= 80) yellow-text 
+                        @else green-text @endif" 
+                        style="position: relative; left:110px; top:-130px;">
+                        {{ $sectionScore }}
+                    </div>
+                </div>
+            @endforeach
             </div>
         </div>
 

@@ -623,16 +623,48 @@ class SurveysExport implements   FromArray
         }
         array_multisort($v, SORT_DESC, $query['sort_results_planning_performance']);
 
+        $sectionsData = DB::table('sections')
+        ->select('sections.id as section_id', 'sections.name as section_name')
+        ->join('users', 'users.section', '=', 'sections.id')
+        ->join('survey_employees', 'survey_employees.employee_id', '=', 'users.id')
+        ->where('survey_employees.survey_company_id', $survey_company_id)
+        ->groupBy('sections.id', 'sections.name')
+        ->orderBy('sections.name')
+        ->get();
+
+        $query['sections'] = $sectionsData;
+
+        // Initialize array to store section stats
+        $query['sections_stats'] = [];
+
+        foreach ($sectionsData as $section) {
+            $obj = new \stdClass();
+            $obj->section = $section->section_id; // Set the section ID
+            
+            // Call focus_results for each section
+            $sectionStats = $query['data']->focus_results($obj, 'Sections');
+            
+            // Add section name to the stats
+            $sectionStats['section_name'] = $section->section_name;
+            
+            // Store in the array
+            $query['sections_stats'][] = $sectionStats;
+        }
+
+        // contains results for all sections
+        // dd($query['sections_stats']); 
+
+
         }elseif ($request) {
             $results = $this->comparison($request);
-                // Set default values if needed
+                // Set default values if neededs
             $company_name = "Default Company Name";
             $survey_date = now()->format('d-m-Y');
         }
 
         // dd($query);
         // Load the Blade view and pass data to it
-        $pdf = SnappyPdf::loadView('surveys_pdf', $query)->setPaper('a3')->setOption('enable-local-file-access', true);
+        $pdf = SnappyPdf::loadView('surveys_pdf', $query)->setPaper('a3')->setOption('enable-local-file-access', true)->setOption('encoding', 'UTF-8');
 
     
         return $pdf->stream('surveys.pdf');
