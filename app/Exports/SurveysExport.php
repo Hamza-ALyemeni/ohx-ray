@@ -640,7 +640,8 @@ class SurveysExport implements   FromArray
         foreach ($sectionsData as $section) {
             $obj = new \stdClass();
             $obj->section = $section->section_id; // Set the section ID
-            
+            $obj->company_id[0] = $company;
+            $obj->survey_company_id[0] = $survey_company_id;            
             // Call focus_results for each section
             $sectionStats = $query['data']->focus_results($obj, 'Sections');
             
@@ -662,7 +663,7 @@ class SurveysExport implements   FromArray
             $survey_date = now()->format('d-m-Y');
         }
 
-        // dd($query);
+        // dd($query['sections_stats']);
         // Load the Blade view and pass data to it
         $pdf = SnappyPdf::loadView('surveys_pdf', $query)->setPaper('a3')->setOption('enable-local-file-access', true)->setOption('encoding', 'UTF-8');
 
