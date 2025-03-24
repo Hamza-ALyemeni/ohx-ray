@@ -716,7 +716,7 @@
         }
 
 
-        .benchmark-data h3{
+        .benchmark-data h2{
             color: #397b23;
             font-weight: 900;
         }
@@ -754,9 +754,8 @@
 
         .right-column-benchmark{
             position: relative;
-            top: -1530px;
+            top: -1550px;
             left: 590px;
-            border:1px solid black;
             width: 800px;
         }
 
@@ -765,9 +764,14 @@
         /* *************************** */
 
         .ohx-ray-insights{
-            page-break-before: always; /* Force a new page */
-            page-break-inside: avoid; /* Prevent content from splitting */
-            margin-top: 100px; /* Push it down to the next page */
+            /* page-break-before: always;  */
+            /* Force a new page */
+            /* page-break-inside: avoid;  */
+            /* Prevent content from splitting */
+            /* margin-top: 100px;  */
+            /* Push it down to the next page */
+            position: relative;
+            top: -200px;
         }
 
         .ohx-ray-insights-image{
@@ -1239,7 +1243,7 @@
 
    
 
-    <div class="center-title" >
+    <div class="center-title" style="position: relative; top:250px;">
         <h2 class="custom-title">HIGHEST AND LOWEST 5 PRACTICES</h2>
         <div class="final-row">
             <h3 class="heading">OVERALL OHX-RAY SCORE</h3>
@@ -1264,10 +1268,8 @@
                 @endfor
             </ul>
         </div>
-       
-    </div>
 
-    <div class="quadrants">
+        <div class="quadrants">
         <span class="scale">Scale:</span>
         <div>
             <span class="quadrant top-quartile"></span>
@@ -1280,6 +1282,10 @@
             <span class="text-for-quartile">BOTTOM QUARTILE</span>
         </div>
     </div>
+       
+    </div>
+
+   
     
     <div class="benchmark-data">
         @if(number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0) <= 25)
@@ -1296,7 +1302,7 @@
            {{ number_format((($focus_result[0]['value'] + $focus_result[1]['value']) / 2), 0)}}
         </div>
 
-        <h3 style="font-size:24px; ">{{ $company->name; }}</h3>
+        <h2 style="font-size:24px; ">{{ $company->name; }}</h2>
 
         <span class="top-quartile" style="position:relative; left:300px; top:-200px; width:300px; padding:20px; border-radius:10px; font-size:24px;">BenchMark Data</span>
 
@@ -1421,106 +1427,106 @@
         <div class="right-column-benchmark" style="display: table; font-size:20px;">
             <div style="display: table-cell; width: 33%; text-align:center">
                 <div>{{$company->name; }} <span style="color: red; font-size: 24px"> VS </span> private</div>
-                <div style="margin-top: 50px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][0]['value'],0) > number_format($private[1]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][0]['value'],0) - number_format($private[1]['dimensional_results'][0]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 60px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][0]['value'],0) > number_format($private[1]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][0]['value'],0) - number_format($private[1]['dimensional_results'][0]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][1]['value'],0) > number_format($private[1]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][1]['value'],0) - number_format($private[1]['dimensional_results'][1]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][1]['value'],0) > number_format($private[1]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][1]['value'],0) - number_format($private[1]['dimensional_results'][1]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][2]['value'],0) > number_format($private[1]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][2]['value'],0) - number_format($private[1]['dimensional_results'][2]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][2]['value'],0) > number_format($private[1]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][2]['value'],0) - number_format($private[1]['dimensional_results'][2]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][3]['value'],0) > number_format($private[1]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][3]['value'],0) - number_format($private[1]['dimensional_results'][3]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][3]['value'],0) > number_format($private[1]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][3]['value'],0) - number_format($private[1]['dimensional_results'][3]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][0]['value'],0) > number_format($private[0]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][0]['value'],0) - number_format($private[0]['dimensional_results'][0]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][0]['value'],0) > number_format($private[0]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][0]['value'],0) - number_format($private[0]['dimensional_results'][0]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][1]['value'],0) > number_format($private[0]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][1]['value'],0) - number_format($private[0]['dimensional_results'][1]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][1]['value'],0) > number_format($private[0]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][1]['value'],0) - number_format($private[0]['dimensional_results'][1]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][2]['value'],0) > number_format($private[0]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][2]['value'],0) - number_format($private[0]['dimensional_results'][2]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][2]['value'],0) > number_format($private[0]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][2]['value'],0) - number_format($private[0]['dimensional_results'][2]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][3]['value'],0) > number_format($private[0]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][3]['value'],0) - number_format($private[0]['dimensional_results'][3]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][3]['value'],0) > number_format($private[0]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][3]['value'],0) - number_format($private[0]['dimensional_results'][3]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
             </div>
             <div style="display: table-cell; width: 33%; text-align:center">
                 <div>{{$company->name; }} <span style="color:red; font-size: 24px"> VS </span> public</div>
-                <div style="margin-top: 50px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][0]['value'],0) > number_format($public[1]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][0]['value'],0) - number_format($public[1]['dimensional_results'][0]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 60px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][0]['value'],0) > number_format($public[1]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][0]['value'],0) - number_format($public[1]['dimensional_results'][0]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][1]['value'],0) > number_format($public[1]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][1]['value'],0) - number_format($public[1]['dimensional_results'][1]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][1]['value'],0) > number_format($public[1]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][1]['value'],0) - number_format($public[1]['dimensional_results'][1]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][2]['value'],0) > number_format($public[1]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][2]['value'],0) - number_format($public[1]['dimensional_results'][2]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][2]['value'],0) > number_format($public[1]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][2]['value'],0) - number_format($public[1]['dimensional_results'][2]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][3]['value'],0) > number_format($public[1]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][3]['value'],0) - number_format($public[1]['dimensional_results'][3]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][3]['value'],0) > number_format($public[1]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][3]['value'],0) - number_format($public[1]['dimensional_results'][3]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][0]['value'],0) > number_format($public[0]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][0]['value'],0) - number_format($public[0]['dimensional_results'][0]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][0]['value'],0) > number_format($public[0]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][0]['value'],0) - number_format($public[0]['dimensional_results'][0]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][1]['value'],0) > number_format($public[0]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][1]['value'],0) - number_format($public[0]['dimensional_results'][1]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][1]['value'],0) > number_format($public[0]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][1]['value'],0) - number_format($public[0]['dimensional_results'][1]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][2]['value'],0) > number_format($public[0]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][2]['value'],0) - number_format($public[0]['dimensional_results'][2]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][2]['value'],0) > number_format($public[0]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][2]['value'],0) - number_format($public[0]['dimensional_results'][2]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][3]['value'],0) > number_format($public[0]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][3]['value'],0) - number_format($public[0]['dimensional_results'][3]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][3]['value'],0) > number_format($public[0]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][3]['value'],0) - number_format($public[0]['dimensional_results'][3]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
             </div>
             <div style="display: table-cell; width: 33%; text-align:center">
                 <div>{{$company->name; }} <span style="color: red; font-size: 24px;"> VS </span> non-profit</div>
-                <div style="margin-top: 50px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][0]['value'],0) > number_format($nonprofit[1]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][0]['value'],0) - number_format($nonprofit[1]['dimensional_results'][0]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 60px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][0]['value'],0) > number_format($nonprofit[1]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][0]['value'],0) - number_format($nonprofit[1]['dimensional_results'][0]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][1]['value'],0) > number_format($nonprofit[1]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][1]['value'],0) - number_format($nonprofit[1]['dimensional_results'][1]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][1]['value'],0) > number_format($nonprofit[1]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][1]['value'],0) - number_format($nonprofit[1]['dimensional_results'][1]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][2]['value'],0) > number_format($nonprofit[1]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][2]['value'],0) - number_format($nonprofit[1]['dimensional_results'][2]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][2]['value'],0) > number_format($nonprofit[1]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][2]['value'],0) - number_format($nonprofit[1]['dimensional_results'][2]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[1]['dimensional_results'][3]['value'],0) > number_format($nonprofit[1]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[1]['dimensional_results'][3]['value'],0) - number_format($nonprofit[1]['dimensional_results'][3]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[1]['dimensional_results'][3]['value'],0) > number_format($nonprofit[1]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[1]['dimensional_results'][3]['value'],0) - number_format($nonprofit[1]['dimensional_results'][3]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][0]['value'],0) > number_format($nonprofit[0]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][0]['value'],0) - number_format($nonprofit[0]['dimensional_results'][0]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][0]['value'],0) > number_format($nonprofit[0]['dimensional_results'][0]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][0]['value'],0) - number_format($nonprofit[0]['dimensional_results'][0]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][1]['value'],0) > number_format($nonprofit[0]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][1]['value'],0) - number_format($nonprofit[0]['dimensional_results'][1]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][1]['value'],0) > number_format($nonprofit[0]['dimensional_results'][1]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][1]['value'],0) - number_format($nonprofit[0]['dimensional_results'][1]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][2]['value'],0) > number_format($nonprofit[0]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][2]['value'],0) - number_format($nonprofit[0]['dimensional_results'][2]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][2]['value'],0) > number_format($nonprofit[0]['dimensional_results'][2]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][2]['value'],0) - number_format($nonprofit[0]['dimensional_results'][2]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
-                <div style="margin-top: 40px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
-                    <div class="@if(number_format($focus_result[0]['dimensional_results'][3]['value'],0) > number_format($nonprofit[0]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ number_format($focus_result[0]['dimensional_results'][3]['value'],0) - number_format($nonprofit[0]['dimensional_results'][3]['value'],0) }}%; height: 24px; border-radius: 5px; text-align: center;">
+                <div style="margin-top: 37px; width: 90%; background-color: #e0e0e0; border-radius: 5px;">
+                    <div class="@if(number_format($focus_result[0]['dimensional_results'][3]['value'],0) > number_format($nonprofit[0]['dimensional_results'][3]['value'],0)) top-quartile @else bottom-quartile @endif" style="width: {{ abs(number_format($focus_result[0]['dimensional_results'][3]['value'],0) - number_format($nonprofit[0]['dimensional_results'][3]['value'],0)) }}%; height: 24px; border-radius: 5px; text-align: center;">
                     </div>
                 </div>
             </div>
@@ -1733,7 +1739,7 @@
         
         </div>  
 
-        <div class="organization-results-male-health">
+        <div class="organization-results-male-health" style="position: relative; top: 2500px;">
             <p class="center-title title">FEMALE HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_female[0]['value'] + $focus_result_female[1]['value']) / 2), 0) <= 25)
@@ -1923,7 +1929,7 @@
         </div>  
 
      
-        <div class="indicators-by-gender" style="position: relative; top: 2500px;">
+        <div class="indicators-by-gender" style="position: relative; top: 2850px;">
             <p class="center-title title"> INDICATORS BY GENDER </p>
     
             <table>
@@ -1992,7 +1998,7 @@
             </div>
         </div>
 
-        <div class="practices-by-gender" style="position: relative; top: 4000px;">
+        <div class="practices-by-gender" style="position: relative; top: 4350px;">
             <p class="center-title title"> PRACTICES BY GENDER </p>
             <table>
                 <tr>
@@ -2202,7 +2208,7 @@
             </div>
         </div>
 
-        <div class="center-title" style="position: relative; top: 5000px;">
+        <div class="center-title" style="position: relative; top: 5700px;">
             <h1 class="custom-title">HIGHEST AND LOWEST 5 PRACTICES</h1>
                 <h3 class="heading" style="position: relative; left:-400px; top:80px">OVERALL OHX-RAY <br> SCORE</h3>
                 <h3 class="heading" style="position: relative; top:40px;">Male Level</h3>
@@ -2274,7 +2280,7 @@
             </div>
         </div>
 
-        <div class="by-level" style="position: relative; top:6200px; left:40px;">
+        <div class="by-level" style="position: relative; top:6800px; left:40px;">
             <img src="{{ public_path('by-level.png')}}" alt="">
         </div>
 
@@ -3271,11 +3277,11 @@
             </div>
         </div>
 
-        <div id="by-age" style="position: relative; top:11200px; left:40px;">
+        <div id="by-age" style="position: relative; top:13000px; left:40px;">
             <img src="{{ public_path('by-age.png')}}" alt="">
         </div>
 
-        <div class="" style="position: relative; top:12380px; left:40px;">
+        <div class="" style="position: relative; top:14380px; left:40px;">
             <p class="center-title title">AGE<= 25 YEARS HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_25[0]['value'] + $focus_result_25[1]['value']) / 2), 0) <= 25)
@@ -3465,7 +3471,7 @@
         </div>  
 
 
-        <div class="" style="position: relative; top:12380px; left:40px;">
+        <div class="" style="position: relative; top:14600px; left:40px;">
             <p class="center-title title">26-34 AGE HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_26_34[0]['value'] + $focus_result_26_34[1]['value']) / 2), 0) <= 25)
@@ -3654,7 +3660,7 @@
         
         </div> 
 
-        <div class="" style="position: relative; top:12380px; left:40px;">
+        <div class="" style="position: relative; top:14700px; left:40px;">
             <p class="center-title title">35-44 AGE HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_35_44[0]['value'] + $focus_result_35_44[1]['value']) / 2), 0) <= 25)
@@ -3843,7 +3849,7 @@
         
         </div> 
 
-        <div class="" style="position: relative; top:12380px; left:40px;">
+        <div class="" style="position: relative; top:14850px; left:40px;">
             <p class="center-title title">AGE >= 45 YEARS HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_45[0]['value'] + $focus_result_45[1]['value']) / 2), 0) <= 25)
@@ -4032,7 +4038,7 @@
         
         </div> 
 
-        <div class="indicators-by-gender" style="position: relative; top: 12500px;">
+        <div class="indicators-by-gender" style="position: relative; top: 15000px;">
             <p class="center-title title"> INDICATORS BY AGE </p>
     
             <table>
@@ -4125,7 +4131,7 @@
             </div>
         </div>
 
-        <div class="practices-by-gender" style="position: relative; top: 13900px;">
+        <div class="practices-by-gender" style="position: relative; top: 16900px;">
             <p class="center-title title"> PRACTICES BY AGE </p>
             <table>
                 <tr>
@@ -4417,7 +4423,7 @@
             </div>
         </div>
 
-        <div class="center-title" style="position: relative; top: 15000px;">
+        <div class="center-title" style="position: relative; top: 17900px;">
             <h1 class="custom-title">HIGHEST AND LOWEST 5 PRACTICES</h1>
                 <h3 class="heading" style="position: relative; left:-550px; top:170px">OVERALL OHX-RAY <br> SCORE</h3>
                 <h3 class="heading" style="position: relative; left:-260px; top:110px;">AGE <= 25</h3>
@@ -4523,12 +4529,12 @@
             </div>
         </div>
 
-        <div class="by-nationality" style="position: relative; top: 16200px; left:40px;">
+        <div class="by-nationality" style="position: relative; top: 19150px; left:40px;">
             <img src="{{public_path('by nationality.png')}}" alt="">
         </div>
 
         
-        <div style="position: relative; top:17400px; left:40px;">
+        <div style="position: relative; top:20700px; left:40px;">
             <p class="center-title title">LOCAL NATIONALITY HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_local[0]['value'] + $focus_result_local[1]['value']) / 2), 0) <= 25)
@@ -4717,7 +4723,7 @@
         
         </div>  
 
-        <div style="position: relative; top:17400px; left:40px;">
+        <div style="position: relative; top:20800px; left:40px;">
             <p class="center-title title">EXPAT NATIONALITY HEALTH IMAGE</p>
             <div class="organization-results-container">
                 @if(number_format((($focus_result_expat[0]['value'] + $focus_result_expat[1]['value']) / 2), 0) <= 25)
@@ -4906,7 +4912,7 @@
         
         </div> 
 
-        <div class="indicators-by-gender" style="position: relative; top: 17400px;">
+        <div class="indicators-by-gender" style="position: relative; top: 21000px;">
             <p class="center-title title">INDICATORS BY NATIONALITY</p>
     
             <table>
@@ -4975,7 +4981,7 @@
             </div>
         </div>
 
-        <div class="practices-by-gender" style="position: relative; top: 19000px;">
+        <div class="practices-by-gender" style="position: relative; top: 22700px;">
             <p class="center-title title"> PRACTICES BY NATIONALITY </p>
             <table>
                 <tr>
@@ -5185,11 +5191,11 @@
             </div>
         </div>
 
-        <div class="center-title" style="position: relative; top: 20100px;">
+        <div class="center-title" style="position: relative; top: 23850px;">
             <h1 class="custom-title">HIGHEST AND LOWEST 5 PRACTICES</h1>
                 <h3 class="heading" style="position: relative; left:-400px; top:80px">OVERALL OHX-RAY <br> SCORE</h3>
-                <h3 class="heading" style="position: relative; top:40px;">Male Level</h3>
-                <h3 class="heading" style="position: relative; left:990px; width:180px;">Female Level</h3>
+                <h3 class="heading" style="position: relative; top:40px;">Local Level</h3>
+                <h3 class="heading" style="position: relative; left:990px; width:180px;">Expat Level</h3>
             <div class="final-row" style="margin-bottom: 100px;">
                 <ul class="final-col" style="margin-right: 100px;">
                     @for($i = 0; $i < 5;$i++) 
